@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">AJYAL Scanner Pro - Advanced Capabilities Suite</title>
+    
+    <!-- Favicon Icon -->
+    <link rel="icon" type="image/x-icon" href="2_1_1.ico">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter & Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef7ff',
+                            100: '#d9edff',
+                            400: '#38bdf8',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            900: '#0c4a6e',
+                        },
+                        accent: {
+                            emerald: '#10b981',
+                            purple: '#8b5cf6',
+                            orange: '#f97316',
+                        },
+                        dark: {
+                            base: '#0b0f17',
+                            surface: '#131b2e',
+                            card: '#1e293b',
+                            border: '#334155'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Cairo', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', 'Cairo', sans-serif;
+            background-color: #0b0f17;
+            color: #f1f5f9;
+            overflow-x: hidden;
+        }
+        .glow-effect {
+            box-shadow: 0 0 50px -10px rgba(2, 132, 199, 0.35);
+        }
+        .glass-panel {
+            background: rgba(19, 27, 46, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #8b5cf6 50%, #34d399 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f17;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0284c7;
+        }
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body class="selection:bg-brand-500 selection:text-white">
+
+    <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-dark-border/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="flex items-center gap-2 sm:gap-3 group">
+                    <img src="2_1_1.ico" alt="AJYAL Scanner Pro Icon" class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl object-contain shadow-lg shadow-brand-500/20 border border-brand-500/30 bg-slate-900/50 p-0.5 group-hover:scale-105 transition">
+                    <div>
+                        <span class="text-base sm:text-xl font-extrabold tracking-tight text-white flex items-center gap-2">
+                            AJYAL <span class="text-brand-400 font-normal">Scanner Pro</span>
+                        </span>
+                        <p class="hidden sm:block text-xs text-slate-400" data-i18n="nav_subtitle">Advanced Capabilities Hub</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <a href="index.html" class="px-3.5 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700 text-xs font-bold text-slate-200 transition flex items-center gap-2">
+                    <i class="fa-solid fa-arrow-left text-brand-400"></i>
+                    <span data-i18n="nav_back">Back to Home</span>
+                </a>
+
+                <button onclick="toggleLanguage()" id="btn-lang-toggle" class="px-3.5 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700 text-xs font-bold text-slate-200 transition flex items-center gap-2">
+                    <i class="fa-solid fa-globe text-brand-400"></i>
+                    <span id="lang-toggle-text">العربية</span>
+                </button>
+
+                <a href="https://t.me/ajyal_support_bot" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-brand-500 to-brand-700 text-white font-bold text-xs shadow-lg shadow-brand-500/30 hover:scale-105 transition">
+                    <i class="fa-brands fa-telegram text-base"></i> <span data-i18n="nav_contact">Contact Us</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative pt-32 pb-16 overflow-hidden bg-dark-base">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgNDBoNDBWMCIgc3Ryb2tlPSIjMTUyODJhIiBmaWxsPSJub25lIiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4=')] bg-repeat opacity-20"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs font-semibold mb-6">
+                <span class="w-2 h-2 rounded-full bg-accent-emerald animate-pulse"></span>
+                <span data-i18n="hero_badge">AJYAL Core Algorithms & Vision Engineering</span>
+            </div>
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white mb-4" data-i18n="hero_title">
+                Deep Dive into <span class="gradient-text">Advanced Document Processing</span>
+            </h1>
+            <p class="max-w-3xl mx-auto text-base sm:text-lg text-slate-300 font-light leading-relaxed" data-i18n="hero_desc">
+                Explore the sophisticated computer vision algorithms powering AJYAL Scanner Pro. Learn how each feature works, why it transforms document workflows, and how effortlessly you can master it.
+            </p>
+        </div>
+    </section>
+
+    <section class="pb-12 bg-dark-base">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-start sm:justify-center overflow-x-auto gap-3 pb-4 no-scrollbar">
+                <button onclick="selectFeature(1)" id="tab-btn-1" class="px-4 py-2.5 rounded-xl font-bold text-xs whitespace-nowrap transition border border-brand-500 bg-brand-500/20 text-brand-400 flex items-center gap-2">
+                    <i class="fa-solid fa-shapes"></i> <span data-i18n="tab_1">1. Multi-Pass Edge Detection</span>
+                </button>
+                <button onclick="selectFeature(2)" id="tab-btn-2" class="px-4 py-2.5 rounded-xl font-bold text-xs whitespace-nowrap transition border border-slate-700 bg-dark-surface text-slate-300 hover:border-slate-500 flex items-center gap-2">
+                    <i class="fa-solid fa-magnet"></i> <span data-i18n="tab_2">2. Magnetic Snap Crop</span>
+                </button>
+                <button onclick="selectFeature(3)" id="tab-btn-3" class="px-4 py-2.5 rounded-xl font-bold text-xs whitespace-nowrap transition border border-slate-700 bg-dark-surface text-slate-300 hover:border-slate-500 flex items-center gap-2">
+                    <i class="fa-solid fa-broom"></i> <span data-i18n="tab_3">3. Top-Hat Shadow Removal</span>
+                </button>
+                <button onclick="selectFeature(4)" id="tab-btn-4" class="px-4 py-2.5 rounded-xl font-bold text-xs whitespace-nowrap transition border border-slate-700 bg-dark-surface text-slate-300 hover:border-slate-500 flex items-center gap-2">
+                    <i class="fa-solid fa-file-pdf"></i> <span data-i18n="tab_4">4. High-Speed PDF Export</span>
+                </button>
+                <button onclick="selectFeature(5)" id="tab-btn-5" class="px-4 py-2.5 rounded-xl font-bold text-xs whitespace-nowrap transition border border-slate-700 bg-dark-surface text-slate-300 hover:border-slate-500 flex items-center gap-2">
+                    <i class="fa-solid fa-sliders"></i> <span data-i18n="tab_5">5. Custom Configuration Presets</span>
+                </button>
+                <button onclick="selectFeature(6)" id="tab-btn-6" class="px-4 py-2.5 rounded-xl font-bold text-xs whitespace-nowrap transition border border-slate-700 bg-dark-surface text-slate-300 hover:border-slate-500 flex items-center gap-2">
+                    <i class="fa-solid fa-compass-drafting"></i> <span data-i18n="tab_6">6. Auto-Deskew & Aspect Ratios</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <main class="py-12 bg-dark-surface/50 border-t border-dark-border/40 min-h-[650px]">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div id="feature-content-container" class="glass-panel p-8 sm:p-12 rounded-3xl border border-slate-700/60 shadow-2xl space-y-8">
+                <!-- Dynamically populated via JS -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-12 border-t border-dark-border/60 bg-dark-base text-slate-400 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <span class="font-bold text-white">AJYAL Scanner Pro</span>
+                <span>— <span data-i18n="footer_rights">All Rights Reserved © 2026</span></span>
+            </div>
+            <div class="flex items-center gap-6 text-slate-400">
+                <a href="index.html" class="hover:text-white transition" data-i18n="nav_back">Back to Home</a>
+                <a href="https://t.me/ajyal_support_bot" target="_blank" class="hover:text-white transition font-bold flex items-center gap-1.5 text-brand-400">
+                    <i class="fa-brands fa-telegram text-sm"></i> <span data-i18n="nav_contact">Contact Us</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentLang = 'en';
+        let currentFeatureId = 1;
+
+        const featuresData = {
+            1: {
+                icon: "fa-shapes",
+                color: "text-brand-400",
+                badgeBg: "bg-brand-500/10 border-brand-500/30 text-brand-400",
+                en: {
+                    title: "Multi-Pass Edge Detection & Convex Hull Optimization",
+                    subtitle: "Detecting paper boundaries with mathematical sub-pixel precision against complex desk and background surfaces.",
+                    overview: "Multi-Pass Edge Detection is the primary foundational algorithm in AJYAL Scanner Pro. Unlike standard mobile scanner apps that rely on single-threshold Canny edge filters which frequently fail on wood textures or patterned desks, AJYAL utilizes a rigorous multi-pass approach. It combines adaptive Gaussian thresholding, morphological gradient filtering, and Convex Hull polygon approximation to isolate the exact paper quadrilateral regardless of background noise.",
+                    value: "Why This Feature is Extremely Powerful",
+                    valueDesc: "In professional environments, documents are often photographed on cluttered desks, wooden tables, or patterned carpets. Standard detectors mistake desk lines for paper edges, resulting in cropped documents or missing corners. AJYAL's Multi-Pass Edge Detection guarantees 99.8% accurate boundary isolation on the first attempt, saving users from tedious manual corrections and ensuring clean, professional scans instantly.",
+                    ease: "How Easy Is It to Use?",
+                    easeDesc: "Completely automated! When you import an image or capture a document, the multi-pass algorithm scans the frame in milliseconds and automatically outlines the paper with 4 red corner handles. You don't need to adjust parameters unless you want to fine-tune a unique angle.",
+                    faqTitle: "What You Need to Know (Technical FAQ)",
+                    faq1Q: "How does Convex Hull prevent missing corners?",
+                    faq1A: "Convex Hull computes the outer polygon envelope that wraps all detected paper edge points. Even if lighting creates a shadow over one corner, the algorithm extrapolates the geometric intersection to maintain perfect 90-degree rectangle corners.",
+                    faq2Q: "Can I adjust the sensitivity?",
+                    faq2A: "Yes, the advanced processing panel allows you to tweak adaptive threshold block sizes if you are scanning glossy or semi-transparent papers."
+                },
+                ar: {
+                    title: "الكشف متعدد الأطوار عن الحواف وتحسين الهيكل المحدب",
+                    subtitle: "تحديد حدود الورقة بدقة رياضية عالية بصرف النظر عن تداخل الخلفيات وملمس الأسطح.",
+                    overview: "يُعد الكشف متعدد الأطوار عن الحواف (Multi-Pass Edge Detection) الخوارزمية الأساسية في برنامج AJYAL Scanner Pro. على عكس تطبيقات الهواتف العادية التي تعتمد على مرشحات Canny البسيطة وتفشل غالباً على الأسطح الخشبية أو الطاولات المزخرفة، يستخدم أجيال مقاربة صارمة ومتعددة المراحل تدمج العتبة التكيفية (Adaptive Thresholding) وترشيح التدرج المورفولوجي مع تقريب المضلعات (Convex Hull) لعزل المستند بنقاء تام.",
+                    value: "لماذا هذه الميزة قوية ومؤثرة للغاية؟",
+                    valueDesc: "في بيئات العمل الاحترافية، غالباً ما تُلتقط المستندات على مكاتب مكتظة أو أسطح خشبية. تخلط الكشافات العادية بين خطوط المكتب وحواف الورقة مما يقتطع أجزاء من المستند. يضمن كشف أجيال دقة عزل تصل إلى 99.8% منذ المحاولة الأولى، مما يعفي المستخدم من التعديلات اليدوية المتعبة ويضمن نتائج مذهلة فوراً.",
+                    ease: "ما مدى سهولة استخدامها؟",
+                    easeDesc: "الميزة تلقائية بالكامل! فور استيراد أو التقاط صورة المستند، يقوم الخوارزم بمسح الإطار في أجزاء من الثانية وتحديد الورقة بـ 4 زوايا حمراء بارزة. لا تحتاج لأي مجهود يدوي إلا إذا أردت تعديلاً اختيارياً.",
+                    faqTitle: "ما تحتاج لمعرفته (أسئلة تقنية متكررة)",
+                    faq1Q: "كيف تمنع خوارزمية Convex Hull فقدان الزوايا؟",
+                    faq1A: "تقوم خوارزمية الهيكل المحدب بحساب الغلاف الخارجي للمضلع الذي يحيط بجميع نقاط الحواف المكتشفة. وحتى لو تسبب الظلام في إخفاء زاوية معينة، فإن الخوارزمية تستنتج التقاطع الهندسي للحفاظ على زوايا قائمة مثالية.",
+                    faq2Q: "هل يمكنني تعديل حساسية الكشف؟",
+                    faq2A: "نعم، تتيح لك لوحة الإعدادات المتقدمة ضبط أحجام الكتل التكيفية إذا كنت تتعامل مع أوراق لامعة أو شفافة نسبياً."
+                }
+            },
+            2: {
+                icon: "fa-magnet",
+                color: "text-accent-emerald",
+                badgeBg: "bg-accent-emerald/10 border-accent-emerald/30 text-accent-emerald",
+                en: {
+                    title: "🧲 Magnetic Snap Crop & Sub-Pixel Precision",
+                    subtitle: "Smart corner handles that automatically lock onto high-contrast document borders on proximity.",
+                    overview: "Magnetic Snap Crop bridges the gap between manual cropping freedom and automated perfection. When dragging the 4 corner handles across the preview workspace, AJYAL's vision engine calculates local image gradients and automatically 'snaps' the cursor to exact paper edges within a defined pixel radius.",
+                    value: "Why This Feature is Extremely Powerful",
+                    valueDesc: "Manual cropping in traditional photo editors requires extreme zooming and pixel-level precision, which is exhausting when processing dozens of invoices. Magnetic Snap cuts cropping time by 80% because the software does the final sub-pixel alignment for you the moment your cursor gets close to the paper edge.",
+                    ease: "How Easy Is It to Use?",
+                    easeDesc: "Simply click and drag any of the 4 red corner handles on the interactive preview. As you approach the document border, you will feel and see the handle magnetically lock into place with absolute alignment accuracy.",
+                    faqTitle: "What You Need to Know (Technical FAQ)",
+                    faq1Q: "Can I disable magnetic snapping if I want free placement?",
+                    faq1A: "Yes! You can easily toggle the 'Magnetic Snap' switch off in the control panel to achieve completely free-form manual coordinate placement.",
+                    faq2Q: "Does it work on low-contrast paper?",
+                    faq2A: "Yes, the sub-pixel gradient analyzer boosts local edge contrast temporarily during the drag event to detect faint white paper borders against light gray backgrounds."
+                },
+                ar: {
+                    title: "🧲 الاقتصاص المغناطيسي ودقة النقاط الفرعية (Sub-Pixel)",
+                    subtitle: "زوايا ذكية تلتصق تلقائياً بحواف المستند عالية التباين فور اقتراب المؤشر منها.",
+                    overview: "يمثل الاقتصاص المغناطيسي (Magnetic Snap Crop) الجسر المثالي بين حرية الاقتصاص اليدوي والكمال التلقائي. عند سحب نقاط الزوايا الأربع عبر مساحة العمل، يحسب محرك الرؤية تدرجات الصورة المحلية ويقوم تلقائياً 'بإلصاق' المؤشر بحواف الورقة بدقة مذهلة ضمن نطاق محدد.",
+                    value: "لماذا هذه الميزة قوية ومؤثرة للغاية؟",
+                    valueDesc: "يتطلب الاقتصاص اليدوي في برامج الصور التقليدية تكبيراً مجهداً ودقة بالغة على مستوى البكسل، وهو أمر مرهق عند معالجة عشرات الفواتير. يقلل الاقتصاص المغناطيسي وقت العمل بنسبة 80% لأن البرنامج يتولى محاذاة اللمسة الأخيرة بدقة متناهية بمجرد اقتراب يدك من الحافة.",
+                    ease: "ما مدى سهولة استخدامها؟",
+                    easeDesc: "فقط انقر واسحب أي من زوايا الاقتصاص الأربع الحمراء على المعاينة التفاعلية. عندما تقترب من حدود المستند، ستلاحظ فوراً كيف تلتصق النقطة مغناطيسياً بالمكان الصحيح بكل سلاسة ودقة.",
+                    faqTitle: "ما تحتاج لمعرفته (أسئلة تقنية متكررة)",
+                    faq1Q: "هل يمكنني إيقاف الاقتصاص المغناطيسي للاقتصاص الحر؟",
+                    faq1A: "نعم تماماً! يمكنك إلغاء تفعيل مفتاح 'الاقتصاص المغناطيسي' من لوحة التحكم للحصول على حرية كاملة في تحديد الإحداثيات اليدوية.",
+                    faq2Q: "هل يعمل مع الأوراق منخفضة التباين؟",
+                    faq2A: "نعم، يقوم محلل التدرج برفع تباين الحواف مؤقتاً أثناء السحب لاكتشاف حواف الورقة البيضاء الباهتة حتى ضد الخلفيات الرمادية الفاتحة."
+                }
+            },
+            3: {
+                icon: "fa-broom",
+                color: "text-accent-purple",
+                badgeBg: "bg-accent-purple/10 border-accent-purple/30 text-accent-purple",
+                en: {
+                    title: "Top-Hat & Black-Hat Morphological Shadow Removal",
+                    subtitle: "Eradicating finger, hand, and uneven room lighting shadows within the LAB color space.",
+                    overview: "Shadows are the number one enemy of mobile document scanning. When taking photos indoors, fingers or phone bodies cast dark gradients across the paper. AJYAL Scanner Pro deploys Top-Hat and Black-Hat morphological filtering algorithms operating inside the CIE L*a*b* color space, separating luminance (lighting) from chrominance (ink and color).",
+                    value: "Why This Feature is Extremely Powerful",
+                    valueDesc: "Traditional contrast adjustments darken shadows so much that text becomes unreadable, or leave them bright grey. AJYAL's shadow removal algorithm mathematically flattens the background illumination gradient entirely. Your scanned document looks as though it passed through a professional flatbed office scanner.",
+                    ease: "How Easy Is It to Use?",
+                    easeDesc: "It is active by default in Magic Color and Ultra White modes! You can toggle the 'Remove Shadows' checkbox on or off instantly to compare the raw shadowed photo with the illuminated, crystal-clear result.",
+                    faqTitle: "What You Need to Know (Technical FAQ)",
+                    faq1Q: "Does shadow removal erase light pencil writing or faint stamps?",
+                    faq1A: "No. Because processing occurs in the LAB color space, color channels (stamps/signatures) and fine luminance variations (pencil strokes) are preserved while broad area shadows are neutralized.",
+                    faq2Q: "Does it slow down processing speed?",
+                    faq2A: "Optimized native C++ routines ensure shadow flattening executes in under 40 milliseconds per page."
+                },
+                ar: {
+                    title: "إزالة الظلال المورفولوجية بتقنية Top-Hat في مجال LAB",
+                    subtitle: "التخلص التام من ظلال الأصابع واليد والإضاءة غير المتساوية في الغرفة.",
+                    overview: "تُعد الظلال العدو الأول لمسح المستندات بالهاتف. عند التصوير الداخلي، تترك الأصابع أو أطراف الهاتف ظلالاً داكنة على الورقة. يستخدم برنامج AJYAL Scanner Pro خوارزميات ترشيح مورفولوجية متقدمة (Top-Hat & Black-Hat) داخل مساحة الألوان CIE L*a*b*، مما يفصل الإضاءة عن الصبغات واللون الحقيقي للحبر.",
+                    value: "لماذا هذه الميزة قوية ومؤثرة للغاية؟",
+                    valueDesc: "تؤدي تعديلات التباين التقليدية إلى تعتيم الظلال لدرجة ضياع النصوص، أو إبقائها بلون رمادي مزعج. تقوم خوارزمية إزالة الظلال في أجيال بتسطيح تدرج الإضاءة في الخلفية رياضياً بالكامل. يبدو المستند الناتج كأنه تمت معالجته عبر ماسح ضوئي مكتبي مسطح باهظ الثمن.",
+                    ease: "ما مدى سهولة استخدامها؟",
+                    easeDesc: "الميزة مفعلة افتراضياً في أنماط سحر الألوان والأبيض فائق النقاء! يمكنك تشغيل أو إيقاف خانة اختيار 'إزالة الظلال' بنقرة واحدة لمقارنة الصورة الأصلية المعتمة بالنتيجة الناصعة الفورية.",
+                    faqTitle: "ما تحتاج لمعرفته (أسئلة تقنية متكررة)",
+                    faq1Q: "هل تؤدي إزالة الظلال إلى مسح الكتابة الخفيفة بالقلم الرصاص أو الأختام الباهتة؟",
+                    faq1A: "إطلاقاً. نظراً لأن المعالجة تتم في مجال الألوان LAB، يتم الحفاظ على القنوات اللونية (الأختام والتوقيعات) والتفاصيل الدقيقة (خط الرصاص) بينما تتم معادلة ظلال المساحات الواسعة.",
+                    faq2Q: "هل تؤثر على سرعة البرنامج؟",
+                    faq2A: "الروتين البرمجي المحسّن يضمن تنفيذ عملية تسطيح الظلال في أقل من 40 جزءاً من الثانية لكل صفحة."
+                }
+            },
+            4: {
+                icon: "fa-file-pdf",
+                color: "text-accent-orange",
+                badgeBg: "bg-accent-orange/10 border-accent-orange/30 text-accent-orange",
+                en: {
+                    title: "High-Speed Lossless Multi-Page PDF Export",
+                    subtitle: "Instantly compiling scanned page batches into crisp, compact, professional PDF files.",
+                    overview: "Once your documents are cropped, deskewed, and filtered, AJYAL Scanner Pro packages them into industry-standard PDF documents using high-speed lossless compilation routines. It supports multi-page reordering, thumbnail management, and smart image compression.",
+                    value: "Why This Feature is Extremely Powerful",
+                    valueDesc: "Sending individual image files via email is unprofessional and messy. AJYAL enables you to scan a 20-page contract, reorder pages with drag-and-drop ease, and export a single compact PDF in less than a second. The output files maintain vector-like text clarity while keeping file sizes remarkably small.",
+                    ease: "How Easy Is It to Use?",
+                    easeDesc: "Click the prominent 'Export All to PDF' button in the control panel or sidebar. A save dialog appears instantly, letting you name your file and save your professional document collection anywhere on your PC.",
+                    faqTitle: "What You Need to Know (Technical FAQ)",
+                    faq1Q: "Can I merge multiple separate PDF files into one?",
+                    faq1A: "Yes, the batch import tool lets you load existing PDFs, insert new camera scans between pages, and re-export the combined file.",
+                    faq2Q: "Are the generated PDFs searchable?",
+                    faq2A: "PDF export embeds high-resolution raster layers optimized for optical character recognition (OCR) indexing."
+                },
+                ar: {
+                    title: "التصدير الفائق السرعة لملفات PDF متعددة الصفحات بدون فقدان جودة",
+                    subtitle: "تجميع صفحات المستندات المسحوحة في ملفات PDF احترافية ونقية وصغيرة الحجم.",
+                    overview: "بمجرد الانتهاء من اقتصاص المستندات، تعديل استقامتها، وتطبيق مرشحات التصفية، يقوم AJYAL Scanner Pro بتجميعها في مستندات PDF بمعايير الصناعة العالمية باستخدام روتين تجميع عالي السرعة وبدون فقدان جودة الصور. يدعم البرنامج إعادة ترتيب الصفحات، إدارة الصور المصغرة، والضغط الذكي.",
+                    value: "لماذا هذه الميزة قوية ومؤثرة للغاية؟",
+                    valueDesc: "إرسال ملفات صور فردية عبر البريد الإلكتروني أمر غير احترافي ومزعج. يتيح لك أجيال مسح عقد مكون من 20 صفحة، إعادة ترتيبها بالسحب والإفلات، وتصدير ملف PDF واحد مدمج وصغير الحجم في أقل من ثانية. تحافظ الملفات الناتجة على وضوح الحروف تماماً مع أحجام ملفات صغيرة للغاية.",
+                    ease: "ما مدى سهولة استخدامها؟",
+                    easeDesc: "انقر على زر 'تصدير الكل إلى PDF' الواضح في لوحة التحكم أو الشريط الجانبي. سيظهر لك مربع الحوار فوراً لتسمية وحفظ ملفك الاحترافي في أي مكان على جهاز الكمبيوتر الخاص بك.",
+                    faqTitle: "ما تحتاج لمعرفته (أسئلة تقنية متكررة)",
+                    faq1Q: "هل يمكنني دمج ملفات PDF متعددة ومنفصلة في ملف واحد؟",
+                    faq1A: "نعم، تتيح لك أداة الاستيراد المجمّعة تحميل ملفات PDF الحالية، إدراج مسوحات جديدة بين الصفحات، وإعادة تصدير الملف المدمج.",
+                    faq2Q: "هل ملفات PDF الناتجة قابلة للبحث؟",
+                    faq2A: "يدعم تصدير PDF طبقات صور عالية الدقة مُهيئة لفهرسة التعرف الضوئي على الحروف (OCR)."
+                }
+            },
+            5: {
+                icon: "fa-sliders",
+                color: "text-brand-400",
+                badgeBg: "bg-brand-500/10 border-brand-500/30 text-brand-400",
+                en: {
+                    title: "Custom Configuration Presets & Batch Automation",
+                    subtitle: "Saving and recalling tailored scan parameter combinations with a single click.",
+                    overview: "Every document type—whether legal contracts, colored receipts, or faded historical archive sheets—requires unique contrast, brightness, and threshold settings. AJYAL's Persistent Presets Engine allows users to configure custom filter combinations and save them under personalized preset names.",
+                    value: "Why This Feature is Extremely Powerful",
+                    valueDesc: "If you process hundreds of similar invoices daily, manually adjusting contrast and sharpening for each one is a waste of time. With custom presets, you can apply your exact preferred profile to a batch of 50 documents instantly, guaranteeing uniform visual standards across your entire archive.",
+                    ease: "How Easy Is It to Use?",
+                    easeDesc: "Tune your preferred slider values (Contrast, Brightness, Sharpening, Mode) in the control panel, click 'Save Preset', and name it. On your next batch, select your preset from the dropdown menu to apply everything instantly.",
+                    faqTitle: "What You Need to Know (Technical FAQ)",
+                    faq1Q: "Where are custom presets stored?",
+                    faq1A: "Presets are securely saved in lightweight local JSON configuration profiles, making them portable and easy to back up.",
+                    faq2Q: "Can I set a default startup preset?",
+                    faq2A: "Yes, you can designate any custom preset as your default launch configuration in the application preferences."
+                },
+                ar: {
+                    title: "إعدادات الضبط المخصصة والأتمتة المجمّعة (Presets)",
+                    subtitle: "حفظ واستدعاء تركيبات إعدادات المسح المفضلة لديك بنقرة واحدة فقط.",
+                    overview: "كل نوع من المستندات -سواء كانت عقوداً قانونية، إيصالات ملونة، أو صفحات أرشيفية باهتة- يتطلب إعدادات فريدة للتباين والسطوع والعتبة. يتيح محرك النماذج المحفوظة (Persistent Presets Engine) في أجيال للمستخدمين تكوين تركيبات مرشحات مخصصة وحفظها تحت أسماء شخصية.",
+                    value: "لماذا هذه الميزة قوية ومؤثرة للغاية؟",
+                    valueDesc: "إذا كنت تعالج مئات الفواتير المماثلة يومياً، فإن تعديل التباين والحدة يدوياً لكل فاتورة يعد إهداراً للوقت. باستخدام النماذج المخصصة، يمكنك تطبيق ملفك المفضل بدقة على دفعة من 50 مستنداً فوراً، مما يضمن معايير بصرية موحدة عبر أرشيفك بالكامل.",
+                    ease: "ما مدى سهولة استخدامها؟",
+                    easeDesc: "اضبط قيم المنزلقات المفضلة لديك (التباين، السطوع، الحدة، النمط) في لوحة التحكم، وانقر على 'حفظ الإعداد المسبق' وقم تسميته. في دفعتك القادمة، اختر اسم النموذج من القائمة المنسدلة لتُطبق الإعدادات فوراً.",
+                    faqTitle: "ما تحتاج لمعرفته (أسئلة تقنية متكررة)",
+                    faq1Q: "أين يتم تخزين الإعدادات المخصصة؟",
+                    faq1A: "يتم حفظ النماذج بأمان في ملفات تكوين محلية خفيفة من نوع JSON، مما يجعلها سهلة النسخ الاحتياطي والنقل.",
+                    faq2Q: "هل يمكنني تعيين نموذج افتراضي عند بدء التشغيل؟",
+                    faq2A: "نعم، يمكنك تحديد أي نموذج مخصص كإعداد افتراضي للتشغيل في تفضيلات التطبيق."
+                }
+            },
+            6: {
+                icon: "fa-compass-drafting",
+                color: "text-emerald-400",
+                badgeBg: "bg-emerald-500/10 border-emerald-500/30 text-emerald-400",
+                en: {
+                    title: "Auto-Deskew, Perspective Rectification & Aspect Ratios",
+                    subtitle: "Full 90° rotation memory and standardized aspect ratio templates (A4, Letter, ID Card).",
+                    overview: "When documents are photographed at an angle, perspective distortion stretches text unevenly. AJYAL Scanner Pro applies automatic perspective unwarping (homography matrix transformation), precise 90-degree rotation increments, and strict aspect ratio bounding boxes (A4, US Letter, ID Cards, and Square templates).",
+                    value: "Why This Feature is Extremely Powerful",
+                    valueDesc: "Crooked scans look amateurish and fail automated OCR indexing. AJYAL's perspective rectification algorithm warps skewed trapezoidal photographs back into crisp, perfectly rectangular documents. Combined with standard aspect ratio templates, your output files are instantly ready for official printing and archival submission.",
+                    ease: "How Easy Is It to Use?",
+                    easeDesc: "The software automatically calculates skew angles during edge detection. You can also click the rotation or aspect ratio buttons in the toolbar to switch templates or rotate orientation instantly with coordinate memory retention.",
+                    faqTitle: "What You Need to Know (Technical FAQ)",
+                    faq1Q: "How does homography transformation work?",
+                    faq1A: "Homography maps the four arbitrary corner points of the skewed photo quad to a destination rectangle of proportional width and height, completely eliminating camera tilt distortion.",
+                    faq2Q: "Are ID Card templates supported?",
+                    faq2A: "Yes, dedicated ID Card mode enforces exact 85.6mm x 53.9mm proportional ratios for dual-side card scans."
+                },
+                ar: {
+                    title: "التعديل التلقائي للاستقامة، تصحيح المنظور، ونسب الأبعاد",
+                    subtitle: "ذاكرة تدوير كاملة بزاوية 90 درجة وقوالب نسب أبعاد قياسية (A4، Letter، بطاقة هوية).",
+                    overview: "عند تصوير المستندات بزاوية مائلة، يتسبب التشوه المنظوري في مط النصوص بشكل غير متساوٍ. يطبق AJYAL Scanner Pro تصحيحاً تلقائياً لتشوه المنظور (تحويل مصفوفة Homography)، وزوايا تدوير دقيقة بزيادات 90 درجة، وقوالب أبعاد صارمة (A4، US Letter، بطاقات الهوية الشخصية، والمربع).",
+                    value: "لماذا هذه الميزة قوية ومؤثرة للغاية؟",
+                    valueDesc: "تبدو المسوحات المائلة بمظهر غير احترافي وتفشل في أنظمة التعرف الضوئي الفهرسي. تقوم خوارزمية تصحيح المنظور في أجيال بلف الصور المنحرفة نحوية وإعادتها لمستطيلات نقية ومثالية. ومع قوالب نسب الأبعاد القياسية، تصبح ملفاتك جاهزة فوراً للطباعة الرسمية والتقديم.",
+                    ease: "ما مدى سهولة استخدامها؟",
+                    easeDesc: "يحسب البرنامج زوايا الميل تلقائياً أثناء كشف الحواف. يمكنك أيضاً النقر على أزرار التدوير أو نسب الأبعاد في شريط الأدوات للتبديل بين القوالب أو تدوير الاتجاه فوراً مع الاحتفاظ بذاكرة الإحداثيات.",
+                    faqTitle: "ما تحتاج لمعرفته (أسئلة تقنية متكررة)",
+                    faq1Q: "كيف يعمل تحويل المنظور (Homography)؟",
+                    faq1A: "يقوم التحويل بربط نقاط الزوايا الأربع العشوائية لصورة المستند المائل بمستطيل وجهة ذي عرض وارتفاع متناسبين، مما يزيل تشوه ميل الكاميرا تماماً.",
+                    faq2Q: "هل توجد قوالب مخصصة لبطاقات الهوية (ID Cards)؟",
+                    faq2A: "نعم، يفرض نمط البطاقات المخصص نسبة دقيقة تبلغ 85.6 مم × 53.9 مم لمسح وجهي البطاقة باحترافية."
+                }
+            }
+        };
+
+        function selectFeature(id) {
+            currentFeatureId = id;
+            
+            // Update Tab Button Styles
+            for(let i=1; i<=6; i++) {
+                const btn = document.getElementById(`tab-btn-${i}`);
+                if(i === id) {
+                    btn.className = "px-4 py-2.5 rounded-xl font-bold text-xs whitespace-nowrap transition border border-brand-500 bg-brand-500/20 text-brand-400 flex items-center gap-2 shadow-lg shadow-brand-500/20";
+                } else {
+                    btn.className = "px-4 py-2.5 rounded-xl font-bold text-xs whitespace-nowrap transition border border-slate-700 bg-dark-surface text-slate-300 hover:border-slate-500 flex items-center gap-2";
+                }
+            }
+
+            renderFeatureContent();
+        }
+
+        function renderFeatureContent() {
+            const data = featuresData[currentFeatureId][currentLang];
+            const meta = featuresData[currentFeatureId];
+            
+            const container = document.getElementById('feature-content-container');
+            container.innerHTML = `
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-700/60 pb-6">
+                    <div class="space-y-2">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold border ${meta.badgeBg}">
+                            <i class="fa-solid ${meta.icon}"></i> <span>Feature #${currentFeatureId} of 6</span>
+                        </div>
+                        <h2 class="text-2xl sm:text-4xl font-black text-white">${data.title}</h2>
+                        <p class="text-slate-300 text-sm sm:text-base font-light">${data.subtitle}</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-4">
+                    <div class="lg:col-span-8 space-y-6 text-slate-300 text-sm sm:text-base leading-relaxed">
+                        <div class="bg-dark-base/60 p-6 rounded-2xl border border-slate-800 space-y-3">
+                            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-circle-info text-brand-400"></i> <span data-i18n="sec_overview">Overview & Deep Dive</span>
+                            </h3>
+                            <p>${data.overview}</p>
+                        </div>
+
+                        <div class="bg-dark-base/60 p-6 rounded-2xl border border-slate-800 space-y-3">
+                            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-bolt text-accent-orange"></i> <span>${data.value}</span>
+                            </h3>
+                            <p>${data.valueDesc}</p>
+                        </div>
+
+                        <div class="bg-dark-base/60 p-6 rounded-2xl border border-slate-800 space-y-3">
+                            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-wand-magic-sparkles text-accent-emerald"></i> <span>${data.ease}</span>
+                            </h3>
+                            <p>${data.easeDesc}</p>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-4 space-y-6">
+                        <div class="bg-dark-surface p-6 rounded-2xl border border-slate-700/80 space-y-4">
+                            <h3 class="text-base font-bold text-white flex items-center gap-2 border-b border-slate-700 pb-3">
+                                <i class="fa-solid fa-circle-question text-brand-400"></i> <span>${data.faqTitle}</span>
+                            </h3>
+                            <div class="space-y-3 text-xs">
+                                <div class="bg-dark-base p-3 rounded-xl border border-slate-800">
+                                    <div class="font-bold text-brand-400 mb-1">Q: ${data.faq1Q}</div>
+                                    <div class="text-slate-300">A: ${data.faq1A}</div>
+                                </div>
+                                <div class="bg-dark-base p-3 rounded-xl border border-slate-800">
+                                    <div class="font-bold text-brand-400 mb-1">Q: ${data.faq2Q}</div>
+                                    <div class="text-slate-300">A: ${data.faq2A}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 rounded-2xl bg-gradient-to-br from-brand-900/40 to-dark-surface border border-brand-500/30 text-center space-y-4">
+                            <h4 class="font-bold text-white text-sm" data-i18n="cta_box_title">Ready to Experience AJYAL?</h4>
+                            <p class="text-xs text-slate-300" data-i18n="cta_box_desc">Download the Windows installer or test the interactive simulator on the main page.</p>
+                            <a href="index.html#download" class="block w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs shadow-lg transition">
+                                <span data-i18n="cta_box_btn">Download Windows App (.exe)</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        const globalI18n = {
+            en: {
+                page_title: "AJYAL Scanner Pro - Advanced Capabilities Suite",
+                nav_subtitle: "Advanced Capabilities Hub",
+                nav_back: "Back to Home",
+                nav_contact: "Contact Us",
+                hero_badge: "AJYAL Core Algorithms & Vision Engineering",
+                hero_title: "Deep Dive into <span class=\"gradient-text\">Advanced Document Processing</span>",
+                hero_desc: "Explore the sophisticated computer vision algorithms powering AJYAL Scanner Pro. Learn how each feature works, why it transforms document workflows, and how effortlessly you can master it.",
+                tab_1: "1. Multi-Pass Edge Detection",
+                tab_2: "2. Magnetic Snap Crop",
+                tab_3: "3. Top-Hat Shadow Removal",
+                tab_4: "4. High-Speed PDF Export",
+                tab_5: "5. Custom Configuration Presets",
+                tab_6: "6. Auto-Deskew & Aspect Ratios",
+                sec_overview: "Overview & Deep Dive",
+                cta_box_title: "Ready to Experience AJYAL?",
+                cta_box_desc: "Download the Windows installer or test the interactive simulator on the main page.",
+                cta_box_btn: "Download Windows App (.exe)",
+                footer_rights: "All Rights Reserved © 2026"
+            },
+            ar: {
+                page_title: "AJYAL Scanner Pro - حزمة القدرات المتقدمة",
+                nav_subtitle: "مركز القدرات المتقدمة",
+                nav_back: "العودة للرئيسية",
+                nav_contact: "تواصل معنا",
+                hero_badge: "خوارزميات أجيال الأساسية وهندسة الرؤية الحاسوبية",
+                hero_title: "تعرّف بعمق على <span class=\"gradient-text\">تقنيات معالجة المستندات المتقدمة</span>",
+                hero_desc: "استكشف خوارزميات الرؤية الحاسوبية المتطورة التي تعمل خلف كواليس AJYAL Scanner Pro. وتعرّف على آلية عمل كل ميزة، قيمتها الحقيقية في عملك، ومدى سهولة استخدامها.",
+                tab_1: "1. الكشف متعدد الأطوار للحواف",
+                tab_2: "2. الاقتصاص المغناطيسي",
+                tab_3: "3. إزالة الظلال Top-Hat",
+                tab_4: "4. تصدير PDF فائق السرعة",
+                tab_5: "5. الإعدادات المخصصة Presets",
+                tab_6: "6. المحاذاة وتصحيح المنظور",
+                sec_overview: "نظرة عامة وشرح عميق",
+                cta_box_title: "هل أنت مستعد لتجربة أجيال؟",
+                cta_box_desc: "قم بتحميل برنامج تثبيت ويندوز أو جرب المحاكي التفاعلي على الصفحة الرئيسية.",
+                cta_box_btn: "تحميل تطبيق Windows (.exe)",
+                footer_rights: "جميع الحقوق محفوظة © 2026"
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            applyGlobalLanguage(currentLang);
+        }
+
+        function applyGlobalLanguage(lang) {
+            const html = document.documentElement;
+            html.lang = lang;
+            html.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+            document.getElementById('lang-toggle-text').innerText = lang === 'ar' ? 'English' : 'العربية';
+            document.getElementById('page-title').innerText = globalI18n[lang].page_title;
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (globalI18n[lang] && globalI18n[lang][key]) {
+                    el.innerHTML = globalI18n[lang][key];
+                }
+            });
+
+            renderFeatureContent();
+        }
+
+        window.onload = function() {
+            // Read the feature query parameter (e.g., ?feature=2)
+            const urlParams = new URLSearchParams(window.location.search);
+            const featureParam = urlParams.get('feature');
+            
+            if (featureParam && featureParam >= 1 && featureParam <= 6) {
+                selectFeature(parseInt(featureParam));
+            } else {
+                selectFeature(1);
+            }
+        };
+    </script>
+</body>
+</html>

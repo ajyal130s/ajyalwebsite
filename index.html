@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">AJYAL Scanner Pro - Smart Desktop Document Scanner</title>
+    
+    <!-- Favicon Icon -->
+    <link rel="icon" type="image/x-icon" href="2_1_1.ico">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter (for English) & Cairo (for Arabic) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef7ff',
+                            100: '#d9edff',
+                            400: '#38bdf8',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            900: '#0c4a6e',
+                        },
+                        accent: {
+                            emerald: '#10b981',
+                            purple: '#8b5cf6',
+                            orange: '#f97316',
+                        },
+                        dark: {
+                            base: '#0b0f17',
+                            surface: '#131b2e',
+                            card: '#1e293b',
+                            border: '#334155'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Cairo', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', 'Cairo', sans-serif;
+            background-color: #0b0f17;
+            color: #f1f5f9;
+            overflow-x: hidden;
+        }
+        .glow-effect {
+            box-shadow: 0 0 50px -10px rgba(2, 132, 199, 0.35);
+        }
+        .glass-panel {
+            background: rgba(19, 27, 46, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #8b5cf6 50%, #34d399 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f17;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0284c7;
+        }
+
+        /* Animated Background Orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.2;
+            animation: float 10s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(20px, -20px) scale(1.1); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+
+        /* Hover Lift Effect */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        /* Card Gradient Border */
+        .card-border {
+            position: relative;
+            background: rgba(19, 27, 46, 0.75);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: border-color 0.3s;
+        }
+        .card-border::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, rgba(56,189,248,0.3), transparent 30%);
+            animation: rotate 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .card-border:hover::before {
+            opacity: 1;
+        }
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+        .card-border > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Smooth Section Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="selection:bg-brand-500 selection:text-white">
+
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-dark-border/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- Custom App Icon replacing gradient box -->
+                <img src="2_1_1.ico" alt="AJYAL Scanner Pro Icon" class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl object-contain shadow-lg shadow-brand-500/20 border border-brand-500/30 bg-slate-900/50 p-0.5">
+                <div>
+                    <span class="text-base sm:text-xl font-extrabold tracking-tight text-white flex items-center gap-2">
+                        AJYAL <span class="text-brand-400 font-normal">Scanner Pro</span>
+                        <span class="hidden sm:inline text-[10px] bg-brand-500/20 text-brand-400 px-2 py-0.5 rounded-full border border-brand-500/30 font-mono">v2.1.1</span>
+                    </span>
+                    <p class="hidden sm:block text-xs text-slate-400" data-i18n="tagline">Smart Desktop Document Processing Engine</p>
+                </div>
+            </div>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-300">
+                <a href="#demo" class="hover:text-brand-400 transition-colors flex items-center gap-1.5" data-i18n="nav_demo">
+                    <i class="fa-solid fa-wand-magic-sparkles text-xs text-brand-400"></i> Interactive Simulator
+                </a>
+                <a href="#features" class="hover:text-brand-400 transition-colors" data-i18n="nav_features">Features & Algorithms</a>
+                <a href="#modes" class="hover:text-brand-400 transition-colors" data-i18n="nav_modes">Processing Modes</a>
+                <a href="#download" class="hover:text-brand-400 transition-colors" data-i18n="nav_download">Windows Download</a>
+            </nav>
+
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- Language Toggle Button -->
+                <button onclick="toggleLanguage()" id="btn-lang-toggle" class="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700 text-xs font-bold text-slate-200 transition flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-globe text-brand-400"></i>
+                    <span id="lang-toggle-text" class="hidden sm:inline">العربية</span>
+                </button>
+
+                <!-- Contact Us Button (Replaces original Download) -->
+                <a href="https://t.me/ajyal_support_bot" target="_blank" class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-1.5 sm:py-2.5 rounded-xl bg-gradient-to-r from-brand-500 to-brand-700 text-white font-bold text-xs sm:text-sm shadow-lg shadow-brand-500/30 hover:shadow-brand-500/50 hover:scale-[1.02] active:scale-95 transition">
+                    <i class="fa-brands fa-telegram text-lg"></i> <span class="hidden sm:inline" data-i18n="btn_contact">Contact Us</span><span class="sm:hidden" data-i18n="btn_contact_short">Contact</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-28 sm:pt-36 pb-20 overflow-hidden">
+        <!-- Animated Background Orbs -->
+        <div class="orb w-96 h-96 bg-brand-500/15 rounded-full blur-3xl pointer-events-none top-1/4 right-1/4"></div>
+        <div class="orb w-96 h-96 bg-accent-purple/15 rounded-full blur-3xl pointer-events-none bottom-1/3 left-1/4" style="animation-delay: 2s;"></div>
+
+        <!-- Grid Pattern overlay -->
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgNDBoNDBWMCIgc3Ryb2tlPSIjMTUyMDJhIiBmaWxsPSJub25lIiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4=')] bg-repeat opacity-20"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs font-semibold mb-8 backdrop-blur-md">
+                <span class="w-2 h-2 rounded-full bg-accent-emerald animate-pulse"></span>
+                <span data-i18n="hero_badge">Advanced Multi-Pass Convex Hull & OpenCV Vision Engine</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-tight text-white mb-6" data-i18n="hero_title">
+                Hardware Scanner Quality <br>
+                <span class="gradient-text">Powered by Desktop Intelligence</span>
+            </h1>
+
+            <p class="max-w-3xl mx-auto text-lg sm:text-xl text-slate-300 font-light leading-relaxed mb-10" data-i18n="hero_desc">
+                AJYAL Scanner Pro delivers magnetic edge cropping, complex shadow removal, intelligent text deskewing, and instant PDF multi-page exports for high-resolution document processing on Windows.
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-4 mb-16">
+                <a href="#download" class="px-8 py-4 rounded-2xl bg-gradient-to-r from-brand-500 via-brand-600 to-brand-700 text-white text-base font-bold shadow-xl shadow-brand-500/30 hover:shadow-brand-500/50 hover:scale-105 transition-all flex items-center gap-3">
+                    <i class="fa-brands fa-windows text-xl"></i> <span data-i18n="hero_btn_win">Download Windows App (.exe)</span>
+                </a>
+                <a href="#demo" class="px-8 py-4 rounded-2xl bg-dark-card border border-dark-border text-white text-base font-bold hover:bg-slate-800 transition flex items-center gap-3 glass-panel">
+                    <i class="fa-solid fa-wand-magic-sparkles text-brand-400 text-xl"></i> <span data-i18n="hero_btn_demo">Try Live Simulator</span>
+                </a>
+            </div>
+
+            <!-- App Interface Preview Card -->
+            <div class="relative max-w-5xl mx-auto rounded-3xl p-3 glass-panel border border-slate-700/50 glow-effect">
+                <div class="bg-dark-base rounded-2xl overflow-hidden border border-slate-800 p-4">
+                    <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-4 px-2">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                            <span class="text-xs text-slate-400 font-mono ml-3">AJYAL Scanner Pro v2.1.1 - Desktop Edition</span>
+                        </div>
+                        <div class="flex items-center gap-4 text-xs text-slate-400">
+                            <span><i class="fa-solid fa-microchip text-brand-400"></i> Windows Native x64</span>
+                            <span><i class="fa-solid fa-magnet text-accent-emerald"></i> Magnetic Snap ON</span>
+                        </div>
+                    </div>
+
+                    <!-- Interface Grid Demo representation -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 h-[420px]">
+                        <!-- Left Panel UI mock -->
+                        <div class="lg:col-span-3 bg-dark-surface p-4 rounded-xl border border-slate-800/80 flex flex-col justify-between text-xs space-y-3">
+                            <div>
+                                <div class="font-bold text-slate-200 mb-3 flex items-center justify-between">
+                                    <span data-i18n="ui_settings">⚙️ Processing Settings</span>
+                                    <span class="text-[10px] bg-brand-500/20 text-brand-400 px-1.5 py-0.5 rounded">Scope: Page</span>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="bg-dark-base p-2 rounded border border-slate-800">
+                                        <div class="text-[11px] text-slate-400 mb-1" data-i18n="ui_mode">Filter Mode</div>
+                                        <div class="text-brand-400 font-bold">✨ Magic Color</div>
+                                    </div>
+                                    <div class="space-y-1">
+                                        <div class="flex justify-between text-[10px] text-slate-400"><span data-i18n="ui_contrast">Contrast</span><span>75%</span></div>
+                                        <div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden"><div class="h-full bg-brand-500 w-[75%]"></div></div>
+                                    </div>
+                                    <div class="space-y-1">
+                                        <div class="flex justify-between text-[10px] text-slate-400"><span data-i18n="ui_brightness">Brightness</span><span>100%</span></div>
+                                        <div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden"><div class="h-full bg-brand-400 w-[50%]"></div></div>
+                                    </div>
+                                    <div class="space-y-1">
+                                        <div class="flex justify-between text-[10px] text-slate-400"><span data-i18n="ui_sharpen">Text Sharpen</span><span>30%</span></div>
+                                        <div class="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden"><div class="h-full bg-accent-purple w-[30%]"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-2 pt-2 border-t border-slate-800">
+                                <button class="w-full py-2 bg-accent-emerald/20 border border-accent-emerald/40 text-accent-emerald rounded font-bold hover:bg-accent-emerald/30" data-i18n="ui_btn_apply">
+                                    <i class="fa-solid fa-check"></i> Apply Crop & Deskew
+                                </button>
+                                <button class="w-full py-2 bg-brand-600 text-white rounded font-bold hover:bg-brand-500" data-i18n="ui_btn_export">
+                                    <i class="fa-solid fa-file-pdf"></i> Export All to PDF
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Center Main Canvas mock -->
+                        <div class="lg:col-span-7 bg-dark-base rounded-xl border border-slate-800 relative overflow-hidden flex items-center justify-center p-4">
+                            <div class="grid grid-cols-2 gap-3 w-full h-full">
+                                <!-- Original with Quad overlay -->
+                                <div class="relative bg-slate-900/60 rounded border border-slate-800 flex items-center justify-center overflow-hidden">
+                                    <span class="absolute top-2 left-2 text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded border border-slate-700" data-i18n="ui_original_label">Original + Quad</span>
+                                    <div class="w-44 h-60 border-2 border-emerald-400 rounded relative shadow-2xl bg-gradient-to-b from-slate-200 to-slate-100 p-3 transform -rotate-1 scale-95 flex flex-col justify-between">
+                                        <!-- Handles -->
+                                        <div class="absolute -top-2 -right-2 w-4 h-4 bg-red-500 rounded-full border-2 border-white shadow"></div>
+                                        <div class="absolute -top-2 -left-2 w-4 h-4 bg-red-500 rounded-full border-2 border-white shadow"></div>
+                                        <div class="absolute -bottom-2 -right-2 w-4 h-4 bg-red-500 rounded-full border-2 border-white shadow"></div>
+                                        <div class="absolute -bottom-2 -left-2 w-4 h-4 bg-red-500 rounded-full border-2 border-white shadow"></div>
+                                        <div class="space-y-2">
+                                            <div class="h-3 w-3/4 bg-slate-400 rounded"></div>
+                                            <div class="h-2 w-full bg-slate-300 rounded"></div>
+                                            <div class="h-2 w-5/6 bg-slate-300 rounded"></div>
+                                        </div>
+                                        <div class="h-16 bg-slate-300/50 rounded flex items-center justify-center text-[10px] text-slate-500" data-i18n="ui_doc_sample">Raw Camera Document</div>
+                                    </div>
+                                </div>
+                                <!-- Processed result -->
+                                <div class="relative bg-slate-900/60 rounded border border-slate-800 flex items-center justify-center overflow-hidden">
+                                    <span class="absolute top-2 left-2 text-[10px] bg-brand-500/20 text-brand-400 px-2 py-0.5 rounded border border-brand-500/30" data-i18n="ui_result_label">Processed Result</span>
+                                    <div class="w-44 h-60 bg-white rounded shadow-2xl p-4 flex flex-col justify-between text-slate-900 border border-slate-300">
+                                        <div class="space-y-2">
+                                            <div class="flex items-center justify-between border-b pb-1">
+                                                <div class="h-3 w-20 bg-brand-900 rounded"></div>
+                                                <div class="h-2 w-8 bg-brand-500 rounded"></div>
+                                            </div>
+                                            <div class="h-2 w-full bg-slate-200 rounded"></div>
+                                            <div class="h-2 w-11/12 bg-slate-200 rounded"></div>
+                                            <div class="h-2 w-4/5 bg-slate-200 rounded"></div>
+                                        </div>
+                                        <div class="p-2 bg-slate-50 border rounded text-[8px] text-slate-600 font-mono">
+                                            [AJYAL Scan Filter: Magic Color Applied]
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Sidebar Mock -->
+                        <div class="lg:col-span-2 bg-dark-surface p-3 rounded-xl border border-slate-800 text-xs flex flex-col">
+                            <div class="font-bold text-slate-300 mb-2 border-b border-slate-800 pb-2" data-i18n="ui_thumbnails">🖼️ Document Pages</div>
+                            <div class="space-y-2 overflow-y-auto pr-1">
+                                <div class="p-2 bg-brand-500/10 border border-brand-500/40 rounded flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-5 h-5 bg-brand-500 text-white rounded text-[10px] flex items-center justify-center font-bold">1</span>
+                                        <span class="text-slate-200 text-[11px]">Page 1</span>
+                                    </div>
+                                    <i class="fa-solid fa-check text-brand-400"></i>
+                                </div>
+                                <div class="p-2 bg-slate-900 border border-slate-800 rounded flex items-center justify-between opacity-60">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-5 h-5 bg-slate-800 text-slate-400 rounded text-[10px] flex items-center justify-center font-bold">2</span>
+                                        <span class="text-slate-400 text-[11px]">Page 2</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIVE INTERACTIVE SCANNER SIMULATOR -->
+    <section id="demo" class="py-20 relative bg-dark-surface/50 border-y border-dark-border/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 reveal">
+                <span class="text-brand-400 font-bold text-sm tracking-wider uppercase mb-2 block" data-i18n="sim_tag">⚡ Live Browser Simulator</span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white mb-4" data-i18n="sim_heading">Experience the Algorithm Yourself</h2>
+                <p class="text-slate-300" data-i18n="sim_desc">
+                    Drag the 4 corner handles to adjust the magnetic cropping bounding box, and test out filters in real-time.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- Simulator Controls -->
+                <div class="lg:col-span-4 glass-panel p-6 rounded-3xl space-y-6 reveal">
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2 border-b border-slate-700/60 pb-4">
+                        <i class="fa-solid fa-sliders text-brand-400"></i> <span data-i18n="sim_control_title">Processing Panel</span>
+                    </h3>
+
+                    <!-- Filter Modes Buttons -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-300 mb-2" data-i18n="sim_select_mode">Select Filter Mode:</label>
+                        <div class="grid grid-cols-2 gap-2" id="sim-mode-group">
+                            <button onclick="setSimMode('magic')" id="btn-mode-magic" class="px-3 py-2 text-xs font-bold rounded-xl border border-brand-500 bg-brand-500/20 text-brand-400 transition flex items-center gap-2">
+                                ✨ Magic Color
+                            </button>
+                            <button onclick="setSimMode('ultrawhite')" id="btn-mode-ultrawhite" class="px-3 py-2 text-xs font-bold rounded-xl border border-slate-700 bg-dark-base text-slate-300 hover:border-slate-500 transition flex items-center gap-2">
+                                ❄️ Ultra White Pro
+                            </button>
+                            <button onclick="setSimMode('bw')" id="btn-mode-bw" class="px-3 py-2 text-xs font-bold rounded-xl border border-slate-700 bg-dark-base text-slate-300 hover:border-slate-500 transition flex items-center gap-2">
+                                📄 B&W Adaptive
+                            </button>
+                            <button onclick="setSimMode('original')" id="btn-mode-original" class="px-3 py-2 text-xs font-bold rounded-xl border border-slate-700 bg-dark-base text-slate-300 hover:border-slate-500 transition flex items-center gap-2">
+                                🖼️ Original
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Sliders -->
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span class="text-slate-300" data-i18n="sim_contrast_label">Contrast</span>
+                                <span class="text-brand-400" id="val-contrast">1.2</span>
+                            </div>
+                            <input type="range" min="0.5" max="2.0" step="0.1" value="1.2" id="sim-contrast" oninput="updateSim()" class="w-full accent-brand-500">
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span class="text-slate-300" data-i18n="sim_brightness_label">Brightness</span>
+                                <span class="text-brand-400" id="val-brightness">10</span>
+                            </div>
+                            <input type="range" min="-50" max="50" step="5" value="10" id="sim-brightness" oninput="updateSim()" class="w-full accent-brand-500">
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span class="text-slate-300" data-i18n="sim_sharpen_label">Text Sharpening</span>
+                                <span class="text-brand-400" id="val-sharpen">30%</span>
+                            </div>
+                            <input type="range" min="0" max="100" step="10" value="30" id="sim-sharpen" oninput="updateSim()" class="w-full accent-brand-500">
+                        </div>
+                    </div>
+
+                    <!-- Switches -->
+                    <div class="space-y-3 pt-2 border-t border-slate-700/60">
+                        <label class="flex items-center justify-between text-xs font-bold text-slate-300 cursor-pointer">
+                            <span class="flex items-center gap-2"><i class="fa-solid fa-broom text-brand-400"></i> <span data-i18n="sim_shadow_removal">Remove Shadows</span></span>
+                            <input type="checkbox" id="sim-shadows" onchange="updateSim()" checked class="w-4 h-4 accent-brand-500 rounded">
+                        </label>
+                        <label class="flex items-center justify-between text-xs font-bold text-slate-300 cursor-pointer">
+                            <span class="flex items-center gap-2"><i class="fa-solid fa-magnet text-accent-emerald"></i> <span data-i18n="sim_mag_snap">Magnetic Snap</span></span>
+                            <input type="checkbox" id="sim-snap" checked class="w-4 h-4 accent-accent-emerald rounded">
+                        </label>
+                    </div>
+
+                    <!-- Action buttons -->
+                    <div class="pt-2 flex gap-2">
+                        <button onclick="resetCorners()" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs font-bold transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-rotate-left"></i> <span data-i18n="sim_btn_reset">Reset Corner Handles</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Interactive Viewport -->
+                <div class="lg:col-span-8 glass-panel p-6 rounded-3xl reveal">
+                    <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-700/60">
+                        <h4 class="text-sm font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-eye text-brand-400"></i> <span data-i18n="sim_viewport_title">Processing Workspace & Real-time Output</span>
+                        </h4>
+                        <span class="text-xs text-slate-400 font-mono"><i class="fa-solid fa-hand-pointer text-brand-400"></i> <span data-i18n="sim_drag_tip">Drag red corner handles</span></span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Canvas 1: Interactive Corner Selection -->
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between text-xs font-bold text-slate-300">
+                                <span data-i18n="canvas_src_title">1. Raw Image + Polygon Handles</span>
+                                <span class="text-[10px] text-emerald-400 font-mono">Interactive Canvas</span>
+                            </div>
+                            <div class="relative rounded-2xl overflow-hidden border border-slate-700 bg-dark-base flex items-center justify-center p-2">
+                                <canvas id="canvas-src" width="320" height="420" class="cursor-crosshair rounded-xl"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Canvas 2: Flattened & Processed Result -->
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between text-xs font-bold text-slate-300">
+                                <span data-i18n="canvas_dst_title">2. Flattened & Filtered Document</span>
+                                <span class="text-[10px] text-brand-400 font-mono" id="sim-status-tag">Magic Color Active</span>
+                            </div>
+                            <div class="relative rounded-2xl overflow-hidden border border-slate-700 bg-dark-base flex items-center justify-center p-2">
+                                <canvas id="canvas-dst" width="320" height="420" class="rounded-xl shadow-2xl"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE FEATURES & ALGORITHMS -->
+    <section id="features" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <span class="text-brand-400 font-bold text-sm tracking-wider uppercase mb-2 block" data-i18n="feat_tag">Engineering Precision</span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white mb-6" data-i18n="feat_heading">Advanced Document Processing Capabilities</h2>
+                <p class="text-slate-300" data-i18n="feat_desc">
+                    Built with high-level mathematical transformations to remove background noise, flatten geometric warps, and produce ultra-clean documents.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <a href="feature1.html?feature=1" class="block card-border p-8 rounded-3xl hover-lift group cursor-pointer">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-500/10 border border-brand-500/30 text-brand-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-shapes"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="f1_title">Multi-Pass Edge Detection</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4" data-i18n="f1_desc">
+                        Multi-pass edge filtering using adaptive thresholding and morphological gradients ensures exact paper boundary detection even against noisy surfaces.
+                    </p>
+                    <div class="flex items-center justify-between mt-auto">
+                        <span class="text-xs font-mono text-brand-400 bg-brand-500/10 px-2.5 py-1 rounded border border-brand-500/20">Convex Hull Optimization</span>
+                        <span class="text-brand-400 opacity-0 group-hover:opacity-100 transition-opacity text-sm"><i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <!-- Card 2 -->
+                <a href="feature1.html?feature=2" class="block card-border p-8 rounded-3xl hover-lift group cursor-pointer">
+                    <div class="w-14 h-14 rounded-2xl bg-accent-emerald/10 border border-accent-emerald/30 text-accent-emerald flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-magnet"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="f2_title">🧲 Magnetic Snap Crop</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4" data-i18n="f2_desc">
+                        Smart corner snapping automatically locks onto high-contrast document edges when dragging handles, preventing manual positioning errors.
+                    </p>
+                    <div class="flex items-center justify-between mt-auto">
+                        <span class="text-xs font-mono text-accent-emerald bg-accent-emerald/10 px-2.5 py-1 rounded border border-accent-emerald/20">Corner SubPix Precision</span>
+                        <span class="text-accent-emerald opacity-0 group-hover:opacity-100 transition-opacity text-sm"><i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <!-- Card 3 -->
+                <a href="feature1.html?feature=3" class="block card-border p-8 rounded-3xl hover-lift group cursor-pointer">
+                    <div class="w-14 h-14 rounded-2xl bg-accent-purple/10 border border-accent-purple/30 text-accent-purple flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-broom"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="f3_title">Top-Hat Shadow Removal</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4" data-i18n="f3_desc">
+                        Eliminates finger, hand, and camera shadows via Top-Hat & Black-Hat morphological operations within the LAB color space without distorting text.
+                    </p>
+                    <div class="flex items-center justify-between mt-auto">
+                        <span class="text-xs font-mono text-accent-purple bg-accent-purple/10 px-2.5 py-1 rounded border border-accent-purple/20">LAB Color Space Processing</span>
+                        <span class="text-accent-purple opacity-0 group-hover:opacity-100 transition-opacity text-sm"><i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <!-- Card 4 -->
+                <a href="feature1.html?feature=4" class="block card-border p-8 rounded-3xl hover-lift group cursor-pointer">
+                    <div class="w-14 h-14 rounded-2xl bg-accent-orange/10 border border-accent-orange/30 text-accent-orange flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-file-pdf"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="f4_title">High-Speed PDF Export</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4" data-i18n="f4_desc">
+                        Seamlessly import PDF pages and re-export multi-page scan collections into crystal-clear PDF files with optimal compression.
+                    </p>
+                    <div class="flex items-center justify-between mt-auto">
+                        <span class="text-xs font-mono text-accent-orange bg-accent-orange/10 px-2.5 py-1 rounded border border-accent-orange/20">Lossless PDF Compilation</span>
+                        <span class="text-accent-orange opacity-0 group-hover:opacity-100 transition-opacity text-sm"><i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <!-- Card 5 -->
+                <a href="feature1.html?feature=5" class="block card-border p-8 rounded-3xl hover-lift group cursor-pointer">
+                    <div class="w-14 h-14 rounded-2xl bg-brand-500/10 border border-brand-500/30 text-brand-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-sliders"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="f5_title">Custom Configuration Presets</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4" data-i18n="f5_desc">
+                        Save your preferred scan parameter combinations (contrast, block size, sharpening) and re-apply them to any batch with a single click.
+                    </p>
+                    <div class="flex items-center justify-between mt-auto">
+                        <span class="text-xs font-mono text-brand-400 bg-brand-500/10 px-2.5 py-1 rounded border border-brand-500/20">Persistent Presets Engine</span>
+                        <span class="text-brand-400 opacity-0 group-hover:opacity-100 transition-opacity text-sm"><i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <!-- Card 6 -->
+                <a href="feature1.html?feature=6" class="block card-border p-8 rounded-3xl hover-lift group cursor-pointer">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-compass-drafting"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="f6_title">Auto-Deskew & Aspect Ratios</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-4" data-i18n="f6_desc">
+                        Full 90° rotations while maintaining coordinate memory, plus fixed aspect ratio templates (A4, US Letter, ID Cards, Square).
+                    </p>
+                    <div class="flex items-center justify-between mt-auto">
+                        <span class="text-xs font-mono text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/20">Perspective Rectification</span>
+                        <span class="text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity text-sm"><i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESSING MODES SHOWCASE -->
+    <section id="modes" class="py-20 bg-dark-surface/30 border-y border-dark-border/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <span class="text-brand-400 font-bold text-sm tracking-wider uppercase mb-2 block" data-i18n="mode_tag">6 Processing Filters</span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white mb-4" data-i18n="mode_heading">Tailored Modes for Every Document Type</h2>
+                <p class="text-slate-300" data-i18n="mode_desc">Select the optimal enhancement filter whether working with official stamps, historical archives, or handwritten notes.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-brand-500 space-y-3 hover-lift">
+                    <div class="text-lg font-bold text-white flex items-center justify-between">
+                        <span data-i18n="m1_name">✨ Magic Color</span>
+                        <span class="text-xs text-brand-400 bg-brand-500/20 px-2 py-0.5 rounded" data-i18n="m_pop">Most Popular</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed" data-i18n="m1_desc">
+                        Preserves vibrant stamp and signature colors while whitening background paper and removing uneven lighting gradients.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-cyan-400 space-y-3 hover-lift">
+                    <div class="text-lg font-bold text-white flex items-center justify-between">
+                        <span data-i18n="m2_name">❄️ Ultra White Pro</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed" data-i18n="m2_desc">
+                        Aggressively cleans paper backgrounds to pure white while boosting ink sharpness for ultra-crisp document prints.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-purple-500 space-y-3 hover-lift">
+                    <div class="text-lg font-bold text-white flex items-center justify-between">
+                        <span data-i18n="m3_name">📄 B&W Adaptive</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed" data-i18n="m3_desc">
+                        Adaptive block size thresholding for high-contrast pure black-and-white output, ideal for faxing and legal documents.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-emerald-500 space-y-3 hover-lift">
+                    <div class="text-lg font-bold text-white flex items-center justify-between">
+                        <span data-i18n="m4_name">🔮 Sauvola Adaptive</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed" data-i18n="m4_desc">
+                        Sauvola binarization algorithm designed specifically for faded historical prints, old books, and low-contrast text.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-amber-500 space-y-3 hover-lift">
+                    <div class="text-lg font-bold text-white flex items-center justify-between">
+                        <span data-i18n="m5_name">🌟 Ultra Magic White</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed" data-i18n="m5_desc">
+                        Combines background illumination flattening with edge detail enhancement for HD document preservation.
+                    </p>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-slate-400 space-y-3 hover-lift">
+                    <div class="text-lg font-bold text-white flex items-center justify-between">
+                        <span data-i18n="m6_name">🖼️ Original Geometry</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed" data-i18n="m6_desc">
+                        Performs perspective distortion correction and edge cropping without altering original photo colors or tone.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WINDOWS DOWNLOAD SECTION -->
+    <section id="download" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="glass-panel rounded-3xl p-8 sm:p-14 border border-brand-500/30 glow-effect text-center max-w-4xl mx-auto reveal">
+                <div class="w-16 h-16 rounded-2xl bg-brand-500/20 text-brand-400 flex items-center justify-center text-3xl mx-auto mb-6 border border-brand-500/40">
+                    <i class="fa-brands fa-windows"></i>
+                </div>
+
+                <h2 class="text-3xl sm:text-5xl font-black text-white mb-4" data-i18n="dl_heading">Get AJYAL Scanner Pro for Windows</h2>
+                <p class="text-slate-300 max-w-xl mx-auto text-sm sm:text-base leading-relaxed mb-8" data-i18n="dl_desc">
+                    Download the official Windows standalone executable installer directly from our official repository. No complex setup or prerequisites required.
+                </p>
+
+                <!-- Requirements Badge -->
+                <div class="flex flex-wrap items-center justify-center gap-3 text-xs text-slate-300 mb-8 font-mono">
+                    <span class="bg-dark-base px-3.5 py-2 rounded-xl border border-slate-800 flex items-center gap-2"><i class="fa-brands fa-windows text-blue-400 text-sm"></i> Windows 10 / 11 (64-bit)</span>
+                    <span class="bg-dark-base px-3.5 py-2 rounded-xl border border-slate-800 flex items-center gap-2"><i class="fa-solid fa-box text-emerald-400 text-sm"></i> Standalone .exe Installer</span>
+                    <span class="bg-dark-base px-3.5 py-2 rounded-xl border border-slate-800 flex items-center gap-2"><i class="fa-solid fa-shield-halved text-brand-400 text-sm"></i> <span data-i18n="dl_checksum">Verifiable SHA-256 Checksum</span></span>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="https://github.com/ajyal130s/ajyal/releases/latest" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-brand-500 via-brand-600 to-brand-700 text-white font-bold text-sm shadow-xl shadow-brand-500/30 hover:scale-105 transition flex items-center justify-center gap-3">
+                        <i class="fa-brands fa-github text-xl"></i> <span data-i18n="dl_main_btn">Get Latest Version on GitHub</span>
+                    </a>
+                </div>
+
+                <p class="text-xs text-slate-400 mt-4" data-i18n="dl_subtext">Windows 10/11 Compatible • Native 64-bit Performance</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 border-t border-dark-border/60 bg-dark-base text-slate-400 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2">
+                <span class="font-bold text-white">AJYAL Scanner Pro</span>
+                <span>— <span data-i18n="footer_rights">All Rights Reserved © 2026</span></span>
+            </div>
+            <div class="flex flex-wrap items-center gap-6 text-slate-400">
+                <a href="#features" class="hover:text-white transition" data-i18n="nav_features">Features & Algorithms</a>
+                <a href="#demo" class="hover:text-white transition" data-i18n="nav_demo">Interactive Simulator</a>
+                <a href="#download" class="hover:text-white transition" data-i18n="nav_download">Windows Download</a>
+                <!-- New Footer Contact Us Button -->
+                <a href="https://t.me/ajyal_support_bot" target="_blank" class="hover:text-white transition font-bold flex items-center gap-1.5 text-brand-400">
+                    <i class="fa-brands fa-telegram text-sm"></i> <span data-i18n="nav_contact">Contact Us</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE SIMULATOR & LANGUAGE TRANSLATION SCRIPT -->
+    <script>
+        // --- TRANSLATION DATA DICTIONARY ---
+        let currentLang = 'en';
+
+        const i18n = {
+            en: {
+                page_title: "AJYAL Scanner Pro - Smart Desktop Document Scanner",
+                tagline: "Smart Desktop Document Processing Engine",
+                nav_demo: "Interactive Simulator",
+                nav_features: "Features & Algorithms",
+                nav_modes: "Processing Modes",
+                nav_download: "Windows Download",
+                nav_contact: "Contact Us",
+                btn_download_win: "Download for Windows",
+                btn_contact: "Contact Us",
+                btn_contact_short: "Contact",
+                hero_badge: "Advanced Multi-Pass Convex Hull & OpenCV Vision Engine",
+                hero_title: "Hardware Scanner Quality <br><span class=\"gradient-text\">Powered by Desktop Intelligence</span>",
+                hero_desc: "AJYAL Scanner Pro delivers magnetic edge cropping, complex shadow removal, intelligent text deskewing, and instant PDF multi-page exports for high-resolution document processing on Windows.",
+                hero_btn_win: "Download Windows App (.exe)",
+                hero_btn_demo: "Try Live Simulator",
+                ui_settings: "⚙️ Processing Settings",
+                ui_mode: "Filter Mode",
+                ui_contrast: "Contrast",
+                ui_brightness: "Brightness",
+                ui_sharpen: "Text Sharpen",
+                ui_btn_apply: "Apply Crop & Deskew",
+                ui_btn_export: "Export All to PDF",
+                ui_original_label: "Original + Quad",
+                ui_result_label: "Processed Result",
+                ui_doc_sample: "Raw Camera Document",
+                ui_thumbnails: "🖼️ Document Pages",
+                sim_tag: "⚡ Live Browser Simulator",
+                sim_heading: "Experience the Algorithm Yourself",
+                sim_desc: "Drag the 4 corner handles to adjust the magnetic cropping bounding box, and test out filters in real-time.",
+                sim_control_title: "Processing Panel",
+                sim_select_mode: "Select Filter Mode:",
+                sim_contrast_label: "Contrast",
+                sim_brightness_label: "Brightness",
+                sim_sharpen_label: "Text Sharpening",
+                sim_shadow_removal: "Remove Shadows",
+                sim_mag_snap: "Magnetic Snap",
+                sim_btn_reset: "Reset Corner Handles",
+                sim_viewport_title: "Processing Workspace & Real-time Output",
+                sim_drag_tip: "Drag red corner handles",
+                canvas_src_title: "1. Raw Image + Polygon Handles",
+                canvas_dst_title: "2. Flattened & Filtered Document",
+                feat_tag: "Engineering Precision",
+                feat_heading: "Advanced Document Processing Capabilities",
+                feat_desc: "Built with high-level mathematical transformations to remove background noise, flatten geometric warps, and produce ultra-clean documents.",
+                f1_title: "Multi-Pass Edge Detection",
+                f1_desc: "Multi-pass edge filtering using adaptive thresholding and morphological gradients ensures exact paper boundary detection even against noisy surfaces.",
+                f2_title: "🧲 Magnetic Snap Crop",
+                f2_desc: "Smart corner snapping automatically locks onto high-contrast document edges when dragging handles, preventing manual positioning errors.",
+                f3_title: "Top-Hat Shadow Removal",
+                f3_desc: "Eliminates finger, hand, and camera shadows via Top-Hat & Black-Hat morphological operations within the LAB color space without distorting text.",
+                f4_title: "High-Speed PDF Export",
+                f4_desc: "Seamlessly import PDF pages and re-export multi-page scan collections into crystal-clear PDF files with optimal compression.",
+                f5_title: "Custom Configuration Presets",
+                f5_desc: "Save your preferred scan parameter combinations (contrast, block size, sharpening) and re-apply them to any batch with a single click.",
+                f6_title: "Auto-Deskew & Aspect Ratios",
+                f6_desc: "Full 90° rotations while maintaining coordinate memory, plus fixed aspect ratio templates (A4, US Letter, ID Cards, Square).",
+                mode_tag: "6 Processing Filters",
+                mode_heading: "Tailored Modes for Every Document Type",
+                mode_desc: "Select the optimal enhancement filter whether working with official stamps, historical archives, or handwritten notes.",
+                m1_name: "✨ Magic Color",
+                m_pop: "Most Popular",
+                m1_desc: "Preserves vibrant stamp and signature colors while whitening background paper and removing uneven lighting gradients.",
+                m2_name: "❄️ Ultra White Pro",
+                m2_desc: "Aggressively cleans paper backgrounds to pure white while boosting ink sharpness for ultra-crisp document prints.",
+                m3_name: "📄 B&W Adaptive",
+                m3_desc: "Adaptive block size thresholding for high-contrast pure black-and-white output, ideal for faxing and legal documents.",
+                m4_name: "🔮 Sauvola Adaptive",
+                m4_desc: "Sauvola binarization algorithm designed specifically for faded historical prints, old books, and low-contrast text.",
+                m5_name: "🌟 Ultra Magic White",
+                m5_desc: "Combines background illumination flattening with edge detail enhancement for HD document preservation.",
+                m6_name: "🖼️ Original Geometry",
+                m6_desc: "Performs perspective distortion correction and edge cropping without altering original photo colors or tone.",
+                dl_heading: "Get AJYAL Scanner Pro for Windows",
+                dl_desc: "Download the official Windows standalone executable installer directly from our official repository. No complex setup or prerequisites required.",
+                dl_main_btn: "Get Latest Version on GitHub",
+                dl_checksum: "Verifiable SHA-256 Checksum",
+                dl_subtext: "Windows 10/11 Compatible • Native 64-bit Performance",
+                footer_rights: "All Rights Reserved © 2026",
+                doc_title_canvas: "AJYAL OFFICIAL DOCUMENT",
+                doc_passed_stamp: "APPROVED"
+            },
+            ar: {
+                page_title: "AJYAL Scanner Pro - ماسح المستندات المكتبي الذكي",
+                tagline: "محرك مسح وحفظ المستندات المكتبي الذكي",
+                nav_demo: "المحاكي التفاعلي",
+                nav_features: "المميزات والخوارزميات",
+                nav_modes: "أنماط المعالجة",
+                nav_download: "تحميل Windows",
+                nav_contact: "تواصل معنا",
+                btn_download_win: "تحميل لـ Windows",
+                btn_contact: "تواصل معنا",
+                btn_contact_short: "تواصل",
+                hero_badge: "محرك مسح ضوئي قائم على خوارزميات OpenCV و Multi-pass Convex Hull",
+                hero_title: "احصل على جودة السكانر المكتبي <br><span class=\"gradient-text\">بقوة الذكاء البرمجي المتطور</span>",
+                hero_desc: "برنامج AJYAL Scanner Pro يوفر لك إمكانية الاقتصاص المغناطيسي الذكي، إزالة الظلال المعقدة، محاذاة النص التلقائية، ومعالجة صور المستندات وتحويلها لملفات PDF عالية الدقة بنقرة واحدة.",
+                hero_btn_win: "تحميل تثبيت Windows (.exe)",
+                hero_btn_demo: "تجربة المحاكي التفاعلي",
+                ui_settings: "⚙️ إعدادات المعالجة",
+                ui_mode: "نمط المعالجة Mode",
+                ui_contrast: "التباين Contrast",
+                ui_brightness: "السطوع Brightness",
+                ui_sharpen: "حدة النص Sharpen",
+                ui_btn_apply: "تطبيق الاقتصاص والدوران",
+                ui_btn_export: "تصدير الكل إلى PDF",
+                ui_original_label: "الأصلي + الزوايا",
+                ui_result_label: "النتيجة المعالجة",
+                ui_doc_sample: "عنصر المستند الأصلي",
+                ui_thumbnails: "🖼️ الصفحات",
+                sim_tag: "⚡ محاكي حي في المتصفح",
+                sim_heading: "جرب خوارزمية الماسح بنفسك الآن",
+                sim_desc: "يمكنك سحب الدوائر الأربع لتعديل زوايا الاقتصاص، واختيار نمط المعالجة لرؤية النتيجة المباشرة لكود AJYAL Scanner Pro.",
+                sim_control_title: "لوحة التحكم في المعالجة",
+                sim_select_mode: "اختر نمط المعالجة (Mode):",
+                sim_contrast_label: "التباين (Contrast)",
+                sim_brightness_label: "السطوع (Brightness)",
+                sim_sharpen_label: "حدة النص (Sharpening)",
+                sim_shadow_removal: "إزالة الظلال (Remove Shadows)",
+                sim_mag_snap: "الاقتصاص المغناطيسي (Magnetic Snap)",
+                sim_btn_reset: "إعادة ضبط الزوايا",
+                sim_viewport_title: "منطقة المعالجة والنتيجة المباشرة",
+                sim_drag_tip: "اسحب النقاط الحمراء للتعديل",
+                canvas_src_title: "1. الصورة الأصلية + النقاط",
+                canvas_dst_title: "2. المستند بعد الاقتصاص والمعالجة",
+                feat_tag: "القوة التقنية لـ AJYAL Scanner Pro",
+                feat_heading: "خوارزميات معالجة مستندات فائقة الدقة",
+                feat_desc: "تم بناء البرنامج بدمج أقوى التقنيات الرياضية والهندسية لتقليص الضوضاء وضمان استخراج المستند بنظافة تامة.",
+                f1_title: "Multi-Pass Edge Detection",
+                f1_desc: "ترشيحات متعددة الأطوار باستخدام Canny Edge و Morphological Gradient لضمان تحديد حدود الورقة بدقة عالية.",
+                f2_title: "🧲 الاقتصاص المغناطيسي",
+                f2_desc: "محاذاة مغناطيسية تلقائية للزوايا لربط النقاط بالحواف عالية التباين فور سحب المستخدم لها بسهولة.",
+                f3_title: "Top-Hat Shadow Removal",
+                f3_desc: "استبعاد ظلال اليد أو الكاميرا عبر تقنية Morphological Filtering داخل مجال الألوان LAB للحفاظ على الألوان.",
+                f4_title: "تصدير واستيراد PDF سريع",
+                f4_desc: "استخراج صفحات PDF وتجميع الصور المعالجة في ملف PDF واحد متعدّد الصفحات بسرعة وجودة فائقة.",
+                f5_title: "نماذج الإعدادات المخصصة Presets",
+                f5_desc: "احفظ الإعدادات المفضلة لديك (درجة التباين، حجم الكتل، حدة النص) باسم خاص واستدعها بنقرة واحدة.",
+                f6_title: "محاذاة وتعديل نسبة الارتفاع",
+                f6_desc: "دعم التدوير بزاوية 90° مع الحفاظ على نقاط الاقتصاص، وتحديد نسب الأبعاد الجاهزة (A4, ID Card).",
+                mode_tag: "أنماط الصورة الفائقة",
+                mode_heading: "6 أنماط معالجة تناسب كل مستند",
+                mode_desc: "اختر النمط المناسب سواء كانت مستندات مسبوقة بختم ملون، كتب قديمة، أو فواتير خطية.",
+                m1_name: "✨ Magic Color (سحر الألوان)",
+                m_pop: "الأكثر استخداماً",
+                m1_desc: "يحافظ على ألوان الأختام والتوقيعات الحية مع إزالة البقع الخلفية وتبييض الورقة تلقائياً.",
+                m2_name: "❄️ Ultra White Pro",
+                m2_desc: "يعتمد على تفتيح خلفية المستند بشكل أقصى وتوضيح الخطوط السوداء لنسخ ناصعة.",
+                m3_name: "📄 B&W Adaptive",
+                m3_desc: "حجم كتل تكيفي ونقاء أبيض وأسود مثالي للطباعة المباشرة والمعاملات الرسمية.",
+                m4_name: "🔮 Sauvola Adaptive",
+                m4_desc: "خوارزمية Sauvola المتقدمة لمعالجة النصوص القديمة الخفيفة والمطبوعات التاريخية.",
+                m5_name: "🌟 Ultra Magic White",
+                m5_desc: "دمج بين تبييض خلفية المستند وتوضيح التفاصيل الدقيقة للصور عالية الجودة.",
+                m6_name: "🖼️ Original (الأصلي)",
+                m6_desc: "يقوم باقتصاص الصورة وضبط المنظور الهندسي فقط دون أي تعديل على ألوان أو إضاءة المستند.",
+                dl_heading: "احصل على تطبيق AJYAL Scanner Pro لنظام Windows",
+                dl_desc: "قم بتنزيل أحدث إصدار لنظام Windows مباشرة من مستودعنا الرسمي. لا يتطلب إعدادات معقدة.",
+                dl_main_btn: "تنزيل أحدث إصدار عبر GitHub",
+                dl_checksum: "تحقق أمني عبر SHA-256",
+                dl_subtext: "متوافق مع Windows 10/11 • أداء أصلي 64-bit",
+                footer_rights: "جميع الحقوق محفوظة © 2026",
+                doc_title_canvas: "مستند أجيال الرسمي",
+                doc_passed_stamp: "معتمد"
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            applyLanguage(currentLang);
+        }
+
+        function applyLanguage(lang) {
+            const html = document.documentElement;
+            html.lang = lang;
+            html.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+            // Toggle Button Text
+            document.getElementById('lang-toggle-text').innerText = lang === 'ar' ? 'English' : 'العربية';
+
+            // Update all elements with data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[lang] && i18n[lang][key]) {
+                    el.innerHTML = i18n[lang][key];
+                }
+            });
+
+            // Page Title
+            document.getElementById('page-title').innerText = i18n[lang].page_title;
+
+            // Update Simulator Canvas with localized document text
+            updateSim();
+        }
+
+        // --- SIMULATOR LOGIC ---
+        const canvasSrc = document.getElementById('canvas-src');
+        const ctxSrc = canvasSrc.getContext('2d');
+        const canvasDst = document.getElementById('canvas-dst');
+        const ctxDst = canvasDst.getContext('2d');
+
+        // Document corners state
+        let corners = [
+            { x: 40, y: 50 },
+            { x: 270, y: 35 },
+            { x: 295, y: 370 },
+            { x: 25, y: 390 }
+        ];
+
+        let activeCornerIndex = -1;
+        let currentMode = 'magic';
+
+        // Load mock document illustration onto source canvas
+        function drawSourceCanvas() {
+            ctxSrc.clearRect(0, 0, canvasSrc.width, canvasSrc.height);
+
+            // Background table surface
+            ctxSrc.fillStyle = '#1e293b';
+            ctxSrc.fillRect(0, 0, canvasSrc.width, canvasSrc.height);
+
+            // Wood grain mock lines
+            ctxSrc.strokeStyle = '#334155';
+            ctxSrc.lineWidth = 1;
+            for(let i=0; i<canvasSrc.height; i+=25) {
+                ctxSrc.beginPath();
+                ctxSrc.moveTo(0, i);
+                ctxSrc.lineTo(canvasSrc.width, i + 10);
+                ctxSrc.stroke();
+            }
+
+            // Draw quadrilateral connecting corners
+            ctxSrc.beginPath();
+            ctxSrc.moveTo(corners[0].x, corners[0].y);
+            ctxSrc.lineTo(corners[1].x, corners[1].y);
+            ctxSrc.lineTo(corners[2].x, corners[2].y);
+            ctxSrc.lineTo(corners[3].x, corners[3].y);
+            ctxSrc.closePath();
+
+            // Fill paper inner area with slight shadow
+            ctxSrc.fillStyle = '#f8fafc';
+            ctxSrc.fill();
+
+            // Document Mock Content (Header + text lines + stamp)
+            ctxSrc.save();
+            ctxSrc.clip();
+
+            // Header bar
+            ctxSrc.fillStyle = '#0284c7';
+            ctxSrc.fillRect(0, 0, canvasSrc.width, 90);
+
+            // Header text
+            ctxSrc.fillStyle = '#ffffff';
+            ctxSrc.font = currentLang === 'ar' ? 'bold 13px Cairo' : 'bold 13px Inter';
+            ctxSrc.fillText(i18n[currentLang].doc_title_canvas, 45, 60);
+
+            // Lines of text
+            ctxSrc.fillStyle = '#334155';
+            for(let y = 120; y < 350; y += 18) {
+                ctxSrc.fillRect(40, y, (y % 3 === 0 ? 180 : 220), 6);
+            }
+
+            // Red Official Stamp
+            ctxSrc.strokeStyle = '#ef4444';
+            ctxSrc.lineWidth = 3;
+            ctxSrc.beginPath();
+            ctxSrc.arc(220, 280, 30, 0, Math.PI * 2);
+            ctxSrc.stroke();
+            ctxSrc.fillStyle = '#ef4444';
+            ctxSrc.font = currentLang === 'ar' ? 'bold 11px Cairo' : 'bold 10px Inter';
+            ctxSrc.fillText(i18n[currentLang].doc_passed_stamp, 195, 284);
+
+            // Mock Shadow over paper
+            if(document.getElementById('sim-shadows').checked) {
+                const grad = ctxSrc.createRadialGradient(80, 100, 10, 140, 160, 120);
+                grad.addColorStop(0, 'rgba(0, 0, 0, 0.45)');
+                grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+                ctxSrc.fillStyle = grad;
+                ctxSrc.fillRect(0, 0, canvasSrc.width, canvasSrc.height);
+            }
+
+            ctxSrc.restore();
+
+            // Polygon boundary line
+            ctxSrc.strokeStyle = '#10b981';
+            ctxSrc.lineWidth = 2;
+            ctxSrc.beginPath();
+            ctxSrc.moveTo(corners[0].x, corners[0].y);
+            ctxSrc.lineTo(corners[1].x, corners[1].y);
+            ctxSrc.lineTo(corners[2].x, corners[2].y);
+            ctxSrc.lineTo(corners[3].x, corners[3].y);
+            ctxSrc.closePath();
+            ctxSrc.stroke();
+
+            // Corner handles
+            corners.forEach((pt, idx) => {
+                ctxSrc.beginPath();
+                ctxSrc.arc(pt.x, pt.y, (idx === activeCornerIndex ? 10 : 7), 0, Math.PI * 2);
+                ctxSrc.fillStyle = '#ef4444';
+                ctxSrc.fill();
+                ctxSrc.strokeStyle = '#ffffff';
+                ctxSrc.lineWidth = 2;
+                ctxSrc.stroke();
+            });
+        }
+
+        // Process Dst Canvas (Simulate Perspective Crop & Filter)
+        function drawDestinationCanvas() {
+            ctxDst.clearRect(0, 0, canvasDst.width, canvasDst.height);
+
+            // Adjust background based on filter
+            if (currentMode === 'bw') {
+                ctxDst.fillStyle = '#ffffff';
+            } else if (currentMode === 'ultrawhite') {
+                ctxDst.fillStyle = '#fafafa';
+            } else {
+                ctxDst.fillStyle = '#ffffff';
+            }
+            ctxDst.fillRect(0, 0, canvasDst.width, canvasDst.height);
+
+            const contrast = parseFloat(document.getElementById('sim-contrast').value);
+            const brightness = parseInt(document.getElementById('sim-brightness').value);
+
+            // Document Header
+            if(currentMode === 'bw') {
+                ctxDst.fillStyle = '#000000';
+            } else {
+                ctxDst.fillStyle = '#0284c7';
+            }
+            ctxDst.fillRect(30, 40, 260, 45);
+
+            ctxDst.fillStyle = '#ffffff';
+            ctxDst.font = currentLang === 'ar' ? 'bold 12px Cairo' : 'bold 11px Inter';
+            ctxDst.fillText(i18n[currentLang].doc_title_canvas + ' - PROCESSED', 38, 68);
+
+            // Filtered Text Lines
+            const textLineColor = currentMode === 'bw' ? '#000000' : '#1e293b';
+            ctxDst.fillStyle = textLineColor;
+
+            for(let y = 110; y < 350; y += 18) {
+                const lineWidth = (y % 3 === 0 ? 190 : 240);
+                ctxDst.fillRect(40, y, lineWidth, 6);
+            }
+
+            // Stamp Simulation
+            if (currentMode !== 'bw') {
+                ctxDst.strokeStyle = (currentMode === 'magic' ? '#dc2626' : '#991b1b');
+                ctxDst.lineWidth = 3;
+                ctxDst.beginPath();
+                ctxDst.arc(230, 280, 28, 0, Math.PI * 2);
+                ctxDst.stroke();
+                ctxDst.fillStyle = '#dc2626';
+                ctxDst.font = currentLang === 'ar' ? 'bold 11px Cairo' : 'bold 10px Inter';
+                ctxDst.fillText(i18n[currentLang].doc_passed_stamp, 208, 284);
+            } else {
+                // In B&W mode, stamp turns pure black threshold
+                ctxDst.strokeStyle = '#000000';
+                ctxDst.lineWidth = 3;
+                ctxDst.beginPath();
+                ctxDst.arc(230, 280, 28, 0, Math.PI * 2);
+                ctxDst.stroke();
+                ctxDst.fillStyle = '#000000';
+                ctxDst.font = currentLang === 'ar' ? 'bold 11px Cairo' : 'bold 10px Inter';
+                ctxDst.fillText(i18n[currentLang].doc_passed_stamp, 208, 284);
+            }
+
+            // Apply contrast / brightness adjustments to Canvas
+            let imgData = ctxDst.getImageData(0, 0, canvasDst.width, canvasDst.height);
+            let d = imgData.data;
+
+            for (let i = 0; i < d.length; i += 4) {
+                if (currentMode === 'magic') {
+                    // Slight white point boost
+                    d[i] = Math.min(255, (d[i] - 128) * contrast + 128 + brightness + 10);
+                    d[i+1] = Math.min(255, (d[i+1] - 128) * contrast + 128 + brightness + 10);
+                    d[i+2] = Math.min(255, (d[i+2] - 128) * contrast + 128 + brightness + 10);
+                } else if (currentMode === 'ultrawhite') {
+                    // Whiten light pixels aggressively
+                    let avg = (d[i] + d[i+1] + d[i+2]) / 3;
+                    if(avg > 180) {
+                        d[i] = 255; d[i+1] = 255; d[i+2] = 255;
+                    }
+                }
+            }
+            ctxDst.putImageData(imgData, 0, 0);
+        }
+
+        // Mode Switching
+        function setSimMode(mode) {
+            currentMode = mode;
+            document.querySelectorAll('#sim-mode-group button').forEach(b => {
+                b.className = "px-3 py-2 text-xs font-bold rounded-xl border border-slate-700 bg-dark-base text-slate-300 hover:border-slate-500 transition flex items-center gap-2";
+            });
+
+            const activeBtn = document.getElementById(`btn-mode-${mode}`);
+            activeBtn.className = "px-3 py-2 text-xs font-bold rounded-xl border border-brand-500 bg-brand-500/20 text-brand-400 transition flex items-center gap-2";
+
+            document.getElementById('sim-status-tag').innerText = `${mode.toUpperCase()} Filter Active`;
+            updateSim();
+        }
+
+        function updateSim() {
+            document.getElementById('val-contrast').innerText = document.getElementById('sim-contrast').value;
+            document.getElementById('val-brightness').innerText = document.getElementById('sim-brightness').value;
+            document.getElementById('val-sharpen').innerText = document.getElementById('sim-sharpen').value + '%';
+
+            drawSourceCanvas();
+            drawDestinationCanvas();
+        }
+
+        function resetCorners() {
+            corners = [
+                { x: 40, y: 50 },
+                { x: 270, y: 35 },
+                { x: 295, y: 370 },
+                { x: 25, y: 390 }
+            ];
+            updateSim();
+        }
+
+        // Canvas Mouse Dragging Handlers
+        canvasSrc.addEventListener('mousedown', (e) => {
+            const rect = canvasSrc.getBoundingClientRect();
+            const mx = e.clientX - rect.left;
+            const my = e.clientY - rect.top;
+
+            corners.forEach((pt, idx) => {
+                const dist = Math.hypot(pt.x - mx, pt.y - my);
+                if (dist < 20) {
+                    activeCornerIndex = idx;
+                }
+            });
+        });
+
+        canvasSrc.addEventListener('mousemove', (e) => {
+            if (activeCornerIndex !== -1) {
+                const rect = canvasSrc.getBoundingClientRect();
+                let mx = e.clientX - rect.left;
+                let my = e.clientY - rect.top;
+
+                // Magnetic Snapping simulation
+                if (document.getElementById('sim-snap').checked) {
+                    if (Math.abs(mx - 40) < 15) mx = 40;
+                    if (Math.abs(mx - 270) < 15) mx = 270;
+                    if (Math.abs(my - 50) < 15) my = 50;
+                    if (Math.abs(my - 370) < 15) my = 370;
+                }
+
+                corners[activeCornerIndex] = { x: mx, y: my };
+                updateSim();
+            }
+        });
+
+        window.addEventListener('mouseup', () => {
+            activeCornerIndex = -1;
+            drawSourceCanvas();
+        });
+
+        // Initialize on window load
+        window.onload = function() {
+            updateSim();
+            
+            // Reveal animations on scroll
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => observer.observe(el));
+        };
+    </script>
+</body>
+</html>
