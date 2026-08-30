@@ -7,10 +7,10 @@
     <!-- ===== PRIMARY PAGE TITLE ===== -->
     <title id="page-title">AJYAL Scanner Pro — Smart Desktop Document Scanner for Windows</title>
 
-    <!-- ===== FAVICON ===== -->
-    <link rel="icon" type="image/x-icon" href="2_1_1.ico">
-
-    <!-- ===== ADDITIONAL ICONS (PLACEHOLDERS – CREATE YOUR OWN IMAGES) ===== -->
+    <!-- ===== FAVICON (UPDATED) ===== -->
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
@@ -18,7 +18,7 @@
     <meta name="msapplication-TileColor" content="#0284c7">
     <meta name="theme-color" content="#0284c7">
 
-    <!-- ===== OPEN GRAPH (OG) TAGS – FOR GOOGLE SEARCH & SOCIAL SHARING ===== -->
+    <!-- ===== OPEN GRAPH (OG) TAGS ===== -->
     <meta property="og:title" content="AJYAL Scanner Pro — Smart Desktop Document Scanner for Windows" />
     <meta property="og:description" content="Professional-grade document scanning with magnetic edge cropping, shadow removal, auto-deskew, and multi-page PDF export. Windows native application." />
     <meta property="og:image" content="https://ajyalscanner.netlify.app/og-image.jpg" />
@@ -37,9 +37,9 @@
     <meta name="twitter:title" content="AJYAL Scanner Pro — Desktop Document Scanner for Windows" />
     <meta name="twitter:description" content="Professional document scanning with magnetic edge cropping, shadow removal, and multi-page PDF export on Windows." />
     <meta name="twitter:image" content="https://ajyalscanner.netlify.app/og-image.jpg" />
-    <meta name="twitter:site" content="@ajyal_scanner" />  <!-- change if you have a handle -->
+    <meta name="twitter:site" content="@ajyal_scanner" />
 
-    <!-- ===== STRUCTURED DATA (JSON-LD) – TELLS GOOGLE & AI THIS IS A WINDOWS DESKTOP APP ===== -->
+    <!-- ===== STRUCTURED DATA (JSON-LD) ===== -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -51,6 +51,7 @@
       "description": "Professional desktop document scanning software with magnetic edge cropping, shadow removal, auto-deskew, and multi-page PDF export.",
       "url": "https://ajyalscanner.netlify.app/",
       "image": "https://ajyalscanner.netlify.app/og-image.jpg",
+      "logo": "https://ajyalscanner.netlify.app/android-chrome-512x512.png",
       "author": {
         "@type": "Organization",
         "name": "AJYAL"
@@ -71,7 +72,7 @@
     <link rel="alternate" hreflang="ar" href="https://ajyalscanner.netlify.app/?lang=ar" />
     <link rel="alternate" hreflang="x-default" href="https://ajyalscanner.netlify.app/" />
 
-    <!-- ===== GOOGLE SEARCH CONSOLE VERIFICATION (meta tag) ===== -->
+    <!-- ===== GOOGLE SEARCH CONSOLE VERIFICATION ===== -->
     <meta name="google-site-verification" content="google141973352d0aef6b.html" />
 
     <!-- ===== ROBOTS & OTHER META TAGS ===== -->
@@ -229,11 +230,11 @@
 </head>
 <body class="selection:bg-brand-500 selection:text-white">
 
-    <!-- ===== HEADER (role="banner") ===== -->
+    <!-- ===== HEADER ===== -->
     <header role="banner" class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-dark-border/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex flex-wrap items-center justify-between gap-2">
             <div class="flex items-center gap-2 sm:gap-3">
-                <img src="2_1_1.ico" alt="AJYAL Scanner Pro Icon" class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl object-contain shadow-lg shadow-brand-500/20 border border-brand-500/30 bg-slate-900/50 p-0.5">
+                <img src="android-chrome-192x192.png" alt="AJYAL Scanner Pro Icon" class="w-9 h-9 sm:w-11 sm:h-11 rounded-xl object-contain shadow-lg shadow-brand-500/20 border border-brand-500/30 bg-slate-900/50 p-0.5">
                 <div>
                     <span class="text-base sm:text-xl font-extrabold tracking-tight text-white flex items-center gap-2">
                         AJYAL <span class="text-brand-400 font-normal">Scanner Pro</span>
@@ -243,7 +244,7 @@
                 </div>
             </div>
 
-            <!-- Navigation (role="navigation") -->
+            <!-- Navigation -->
             <nav role="navigation" aria-label="Main navigation" class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-300">
                 <a href="#demo" class="hover:text-brand-400 transition-colors flex items-center gap-1.5" data-i18n="nav_demo">
                     <i class="fa-solid fa-wand-magic-sparkles text-xs text-brand-400"></i> Interactive Simulator
@@ -266,7 +267,7 @@
         </div>
     </header>
 
-    <!-- ===== MAIN CONTENT (role="main") ===== -->
+    <!-- ===== MAIN CONTENT ===== -->
     <main role="main">
 
         <!-- ===== HERO SECTION ===== -->
@@ -736,7 +737,7 @@
 
     </main>
 
-    <!-- ===== FOOTER (role="contentinfo") ===== -->
+    <!-- ===== FOOTER ===== -->
     <footer role="contentinfo" class="py-12 border-t border-dark-border/60 bg-dark-base text-slate-400 text-xs">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center gap-2">
@@ -754,7 +755,7 @@
         </div>
     </footer>
 
-    <!-- ===== SCRIPTS (i18n & Simulator) ===== -->
+    <!-- ===== SCRIPTS ===== -->
     <script>
         // --- TRANSLATION DATA DICTIONARY ---
         let currentLang = 'en';
