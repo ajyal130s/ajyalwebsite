@@ -3,22 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">AJYAL Scanner Pro - Advanced Capabilities Suite</title>
-    
-    <!-- Favicon Icon -->
+
+    <!-- ===== PRIMARY PAGE TITLE ===== -->
+    <title id="page-title">AJYAL Scanner Pro — Advanced Document Processing Features for Windows</title>
+
+    <!-- ===== FAVICON ===== -->
     <link rel="icon" type="image/x-icon" href="2_1_1.ico">
-    
-    <!-- Tailwind CSS CDN -->
+
+    <!-- ===== ADDITIONAL ICONS (PLACEHOLDERS – CREATE YOUR OWN IMAGES) ===== -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512x512.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="msapplication-TileColor" content="#0284c7">
+    <meta name="theme-color" content="#0284c7">
+
+    <!-- ===== OPEN GRAPH (OG) TAGS – FOR GOOGLE SEARCH & SOCIAL SHARING ===== -->
+    <meta property="og:title" content="AJYAL Scanner Pro — Advanced Document Processing Features for Windows" />
+    <meta property="og:description" content="Explore the sophisticated computer vision algorithms powering AJYAL Scanner Pro: Multi-Pass Edge Detection, Magnetic Snap Crop, Shadow Removal, PDF Export, Presets, and Auto-Deskew. Windows native desktop application." />
+    <meta property="og:image" content="https://ajyalscanner.netlify.app/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="AJYAL Scanner Pro desktop application interface on Windows" />
+    <meta property="og:url" content="https://ajyalscanner.netlify.app/feature1.html" />
+    <meta property="og:type" content="product" />
+    <meta property="og:site_name" content="AJYAL Scanner Pro" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="ar_AR" />
+    <meta property="og:updated_time" content="2026-08-29T12:00:00+00:00" />
+
+    <!-- ===== TWITTER CARD TAGS ===== -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AJYAL Scanner Pro — Advanced Document Processing Features for Windows" />
+    <meta name="twitter:description" content="Explore the sophisticated computer vision algorithms powering AJYAL Scanner Pro: Multi-Pass Edge Detection, Magnetic Snap Crop, Shadow Removal, PDF Export, Presets, and Auto-Deskew." />
+    <meta name="twitter:image" content="https://ajyalscanner.netlify.app/og-image.jpg" />
+    <meta name="twitter:site" content="@ajyal_scanner" />  <!-- change if you have a handle -->
+
+    <!-- ===== STRUCTURED DATA (JSON-LD) – TELLS GOOGLE & AI THIS IS A WINDOWS DESKTOP APP ===== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "AJYAL Scanner Pro",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Windows 10, Windows 11",
+      "softwareVersion": "2.1.1",
+      "description": "Professional desktop document scanning software with multi-pass edge detection, magnetic snap crop, top-hat shadow removal, high-speed PDF export, custom presets, and auto-deskew.",
+      "url": "https://ajyalscanner.netlify.app/feature1.html",
+      "image": "https://ajyalscanner.netlify.app/og-image.jpg",
+      "author": {
+        "@type": "Organization",
+        "name": "AJYAL"
+      },
+      "downloadUrl": "https://github.com/ajyal130s/ajyal/releases/latest",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": "Multi-Pass Edge Detection, Magnetic Snap Crop, Top-Hat Shadow Removal, High-Speed PDF Export, Custom Configuration Presets, Auto-Deskew & Aspect Ratios"
+    }
+    </script>
+
+    <!-- ===== CANONICAL & HREFLANG ===== -->
+    <link rel="canonical" href="https://ajyalscanner.netlify.app/feature1.html" />
+    <link rel="alternate" hreflang="en" href="https://ajyalscanner.netlify.app/feature1.html" />
+    <link rel="alternate" hreflang="ar" href="https://ajyalscanner.netlify.app/feature1.html?lang=ar" />
+    <link rel="alternate" hreflang="x-default" href="https://ajyalscanner.netlify.app/feature1.html" />
+
+    <!-- ===== GOOGLE SEARCH CONSOLE VERIFICATION (meta tag) ===== -->
+    <meta name="google-site-verification" content="google141973352d0aef6b.html" />
+
+    <!-- ===== ROBOTS & OTHER META TAGS ===== -->
+    <meta name="robots" content="index, follow, max-snippet:160, max-image-preview:large" />
+    <meta name="googlebot" content="index, follow, max-snippet:160, max-image-preview:large" />
+    <meta name="application-name" content="AJYAL Scanner Pro" />
+    <meta name="apple-mobile-web-app-title" content="AJYAL Scanner" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="abstract" content="Windows document scanner with advanced computer vision algorithms" />
+    <meta name="classification" content="Software, Document Scanning, Windows Application" />
+    <meta name="DC.title" content="AJYAL Scanner Pro — Advanced Document Processing Features for Windows" />
+    <meta name="DC.description" content="Explore the sophisticated computer vision algorithms powering AJYAL Scanner Pro: Multi-Pass Edge Detection, Magnetic Snap Crop, Shadow Removal, PDF Export, Presets, and Auto-Deskew." />
+    <meta name="DC.language" content="en" />
+
+    <!-- ===== EXTERNAL RESOURCES ===== -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Inter & Cairo -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome 6 Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <!-- ===== TAILWIND CONFIG ===== -->
     <script>
         tailwind.config = {
             theme: {
@@ -53,6 +128,8 @@
             }
         }
     </script>
+
+    <!-- ===== CUSTOM STYLES ===== -->
     <style>
         body {
             font-family: 'Inter', 'Cairo', sans-serif;
@@ -97,7 +174,8 @@
 </head>
 <body class="selection:bg-brand-500 selection:text-white">
 
-    <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-dark-border/50">
+    <!-- ===== HEADER (role="banner") ===== -->
+    <header role="banner" class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-dark-border/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
             <div class="flex items-center gap-3">
                 <a href="index.html" class="flex items-center gap-2 sm:gap-3 group">
@@ -117,68 +195,77 @@
                     <span data-i18n="nav_back">Back to Home</span>
                 </a>
 
-                <button onclick="toggleLanguage()" id="btn-lang-toggle" class="px-3.5 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700 text-xs font-bold text-slate-200 transition flex items-center gap-2">
+                <button onclick="toggleLanguage()" id="btn-lang-toggle" class="px-3.5 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 border border-slate-700 text-xs font-bold text-slate-200 transition flex items-center gap-2" aria-label="Toggle language">
                     <i class="fa-solid fa-globe text-brand-400"></i>
                     <span id="lang-toggle-text">العربية</span>
                 </button>
 
-                <a href="https://t.me/ajyal_support_bot" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-brand-500 to-brand-700 text-white font-bold text-xs shadow-lg shadow-brand-500/30 hover:scale-105 transition">
+                <a href="https://t.me/ajyal_support_bot" target="_blank" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-brand-500 to-brand-700 text-white font-bold text-xs shadow-lg shadow-brand-500/30 hover:scale-105 transition" aria-label="Contact us on Telegram">
                     <i class="fa-brands fa-telegram text-base"></i> <span data-i18n="nav_contact">Contact Us</span>
                 </a>
             </div>
         </div>
     </header>
 
-    <section class="relative pt-32 pb-16 overflow-hidden bg-dark-base">
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgNDBoNDBWMCIgc3Ryb2tlPSIjMTUyODJhIiBmaWxsPSJub25lIiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4=')] bg-repeat opacity-20"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs font-semibold mb-6">
-                <span class="w-2 h-2 rounded-full bg-accent-emerald animate-pulse"></span>
-                <span data-i18n="hero_badge">AJYAL Core Algorithms & Vision Engineering</span>
-            </div>
-            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white mb-4" data-i18n="hero_title">
-                Deep Dive into <span class="gradient-text">Advanced Document Processing</span>
-            </h1>
-            <p class="max-w-3xl mx-auto text-base sm:text-lg text-slate-300 font-light leading-relaxed" data-i18n="hero_desc">
-                Explore the sophisticated computer vision algorithms powering AJYAL Scanner Pro. Learn how each feature works, why it transforms document workflows, and how effortlessly you can master it.
-            </p>
-        </div>
-    </section>
+    <!-- ===== MAIN CONTENT (role="main") ===== -->
+    <main role="main">
 
-    <section class="pb-12 bg-dark-base">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-start sm:justify-center overflow-x-auto gap-3 pb-4 no-scrollbar">
-                <button onclick="selectFeature(1)" id="tab-btn-1" class="px-4 py-2.5 rounded-xl font-bold text-xs whitespace-nowrap transition border border-brand-500 bg-brand-500/20 text-brand-400 flex items-center gap-2">
-                    <i class="fa-solid fa-shapes"></i> <span data-i18n="tab_1">1. Multi-Pass Edge Detection</span>
-                </button>
-                <button onclick="selectFeature(2)" id="tab-btn-2" class="px-4 py-2.5 rounded-xl font-bold text-xs whitespace-nowrap transition border border-slate-700 bg-dark-surface text-slate-300 hover:border-slate-500 flex items-center gap-2">
-                    <i class="fa-solid fa-magnet"></i> <span data-i18n="tab_2">2. Magnetic Snap Crop</span>
-                </button>
-                <button onclick="selectFeature(3)" id="tab-btn-3" class="px-4 py-2.5 rounded-xl font-bold text-xs whitespace-nowrap transition border border-slate-700 bg-dark-surface text-slate-300 hover:border-slate-500 flex items-center gap-2">
-                    <i class="fa-solid fa-broom"></i> <span data-i18n="tab_3">3. Top-Hat Shadow Removal</span>
-                </button>
-                <button onclick="selectFeature(4)" id="tab-btn-4" class="px-4 py-2.5 rounded-xl font-bold text-xs whitespace-nowrap transition border border-slate-700 bg-dark-surface text-slate-300 hover:border-slate-500 flex items-center gap-2">
-                    <i class="fa-solid fa-file-pdf"></i> <span data-i18n="tab_4">4. High-Speed PDF Export</span>
-                </button>
-                <button onclick="selectFeature(5)" id="tab-btn-5" class="px-4 py-2.5 rounded-xl font-bold text-xs whitespace-nowrap transition border border-slate-700 bg-dark-surface text-slate-300 hover:border-slate-500 flex items-center gap-2">
-                    <i class="fa-solid fa-sliders"></i> <span data-i18n="tab_5">5. Custom Configuration Presets</span>
-                </button>
-                <button onclick="selectFeature(6)" id="tab-btn-6" class="px-4 py-2.5 rounded-xl font-bold text-xs whitespace-nowrap transition border border-slate-700 bg-dark-surface text-slate-300 hover:border-slate-500 flex items-center gap-2">
-                    <i class="fa-solid fa-compass-drafting"></i> <span data-i18n="tab_6">6. Auto-Deskew & Aspect Ratios</span>
-                </button>
+        <!-- ===== HERO SECTION ===== -->
+        <section class="relative pt-32 pb-16 overflow-hidden bg-dark-base">
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgNDBoNDBWMCIgc3Ryb2tlPSIjMTUyODJhIiBmaWxsPSJub25lIiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4=')] bg-repeat opacity-20"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs font-semibold mb-6">
+                    <span class="w-2 h-2 rounded-full bg-accent-emerald animate-pulse"></span>
+                    <span data-i18n="hero_badge">AJYAL Core Algorithms &amp; Vision Engineering — Windows Desktop App</span>
+                </div>
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white mb-4" data-i18n="hero_title">
+                    Deep Dive into <span class="gradient-text">Advanced Document Processing</span>
+                </h1>
+                <p class="max-w-3xl mx-auto text-base sm:text-lg text-slate-300 font-light leading-relaxed" data-i18n="hero_desc">
+                    Explore the sophisticated computer vision algorithms powering AJYAL Scanner Pro. Learn how each feature works, why it transforms document workflows, and how effortlessly you can master it.
+                </p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <main class="py-12 bg-dark-surface/50 border-t border-dark-border/40 min-h-[650px]">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div id="feature-content-container" class="glass-panel p-8 sm:p-12 rounded-3xl border border-slate-700/60 shadow-2xl space-y-8">
-                <!-- Dynamically populated via JS -->
+        <!-- ===== FEATURE TABS ===== -->
+        <section class="pb-12 bg-dark-base">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-start sm:justify-center overflow-x-auto gap-3 pb-4 no-scrollbar">
+                    <button onclick="selectFeature(1)" id="tab-btn-1" class="px-4 py-2.5 rounded-xl font-bold text-xs whitespace-nowrap transition border border-brand-500 bg-brand-500/20 text-brand-400 flex items-center gap-2">
+                        <i class="fa-solid fa-shapes"></i> <span data-i18n="tab_1">1. Multi-Pass Edge Detection</span>
+                    </button>
+                    <button onclick="selectFeature(2)" id="tab-btn-2" class="px-4 py-2.5 rounded-xl font-bold text-xs whitespace-nowrap transition border border-slate-700 bg-dark-surface text-slate-300 hover:border-slate-500 flex items-center gap-2">
+                        <i class="fa-solid fa-magnet"></i> <span data-i18n="tab_2">2. Magnetic Snap Crop</span>
+                    </button>
+                    <button onclick="selectFeature(3)" id="tab-btn-3" class="px-4 py-2.5 rounded-xl font-bold text-xs whitespace-nowrap transition border border-slate-700 bg-dark-surface text-slate-300 hover:border-slate-500 flex items-center gap-2">
+                        <i class="fa-solid fa-broom"></i> <span data-i18n="tab_3">3. Top-Hat Shadow Removal</span>
+                    </button>
+                    <button onclick="selectFeature(4)" id="tab-btn-4" class="px-4 py-2.5 rounded-xl font-bold text-xs whitespace-nowrap transition border border-slate-700 bg-dark-surface text-slate-300 hover:border-slate-500 flex items-center gap-2">
+                        <i class="fa-solid fa-file-pdf"></i> <span data-i18n="tab_4">4. High-Speed PDF Export</span>
+                    </button>
+                    <button onclick="selectFeature(5)" id="tab-btn-5" class="px-4 py-2.5 rounded-xl font-bold text-xs whitespace-nowrap transition border border-slate-700 bg-dark-surface text-slate-300 hover:border-slate-500 flex items-center gap-2">
+                        <i class="fa-solid fa-sliders"></i> <span data-i18n="tab_5">5. Custom Configuration Presets</span>
+                    </button>
+                    <button onclick="selectFeature(6)" id="tab-btn-6" class="px-4 py-2.5 rounded-xl font-bold text-xs whitespace-nowrap transition border border-slate-700 bg-dark-surface text-slate-300 hover:border-slate-500 flex items-center gap-2">
+                        <i class="fa-solid fa-compass-drafting"></i> <span data-i18n="tab_6">6. Auto-Deskew &amp; Aspect Ratios</span>
+                    </button>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <!-- ===== FEATURE CONTENT ===== -->
+        <section class="py-12 bg-dark-surface/50 border-t border-dark-border/40 min-h-[650px]">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div id="feature-content-container" class="glass-panel p-8 sm:p-12 rounded-3xl border border-slate-700/60 shadow-2xl space-y-8">
+                    <!-- Dynamically populated via JS -->
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <footer class="py-12 border-t border-dark-border/60 bg-dark-base text-slate-400 text-xs">
+    <!-- ===== FOOTER (role="contentinfo") ===== -->
+    <footer role="contentinfo" class="py-12 border-t border-dark-border/60 bg-dark-base text-slate-400 text-xs">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center gap-2">
                 <span class="font-bold text-white">AJYAL Scanner Pro</span>
@@ -193,6 +280,7 @@
         </div>
     </footer>
 
+    <!-- ===== SCRIPTS (i18n & Feature Logic) ===== -->
     <script>
         let currentLang = 'en';
         let currentFeatureId = 1;
@@ -400,8 +488,7 @@
 
         function selectFeature(id) {
             currentFeatureId = id;
-            
-            // Update Tab Button Styles
+
             for(let i=1; i<=6; i++) {
                 const btn = document.getElementById(`tab-btn-${i}`);
                 if(i === id) {
@@ -417,7 +504,7 @@
         function renderFeatureContent() {
             const data = featuresData[currentFeatureId][currentLang];
             const meta = featuresData[currentFeatureId];
-            
+
             const container = document.getElementById('feature-content-container');
             container.innerHTML = `
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-700/60 pb-6">
@@ -489,7 +576,7 @@
                 nav_subtitle: "Advanced Capabilities Hub",
                 nav_back: "Back to Home",
                 nav_contact: "Contact Us",
-                hero_badge: "AJYAL Core Algorithms & Vision Engineering",
+                hero_badge: "AJYAL Core Algorithms & Vision Engineering — Windows Desktop App",
                 hero_title: "Deep Dive into <span class=\"gradient-text\">Advanced Document Processing</span>",
                 hero_desc: "Explore the sophisticated computer vision algorithms powering AJYAL Scanner Pro. Learn how each feature works, why it transforms document workflows, and how effortlessly you can master it.",
                 tab_1: "1. Multi-Pass Edge Detection",
@@ -509,7 +596,7 @@
                 nav_subtitle: "مركز القدرات المتقدمة",
                 nav_back: "العودة للرئيسية",
                 nav_contact: "تواصل معنا",
-                hero_badge: "خوارزميات أجيال الأساسية وهندسة الرؤية الحاسوبية",
+                hero_badge: "خوارزميات أجيال الأساسية وهندسة الرؤية الحاسوبية — تطبيق ويندوز سطح المكتب",
                 hero_title: "تعرّف بعمق على <span class=\"gradient-text\">تقنيات معالجة المستندات المتقدمة</span>",
                 hero_desc: "استكشف خوارزميات الرؤية الحاسوبية المتطورة التي تعمل خلف كواليس AJYAL Scanner Pro. وتعرّف على آلية عمل كل ميزة، قيمتها الحقيقية في عملك، ومدى سهولة استخدامها.",
                 tab_1: "1. الكشف متعدد الأطوار للحواف",
@@ -550,10 +637,9 @@
         }
 
         window.onload = function() {
-            // Read the feature query parameter (e.g., ?feature=2)
             const urlParams = new URLSearchParams(window.location.search);
             const featureParam = urlParams.get('feature');
-            
+
             if (featureParam && featureParam >= 1 && featureParam <= 6) {
                 selectFeature(parseInt(featureParam));
             } else {
